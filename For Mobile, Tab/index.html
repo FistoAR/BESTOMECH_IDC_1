@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4M_Plastics</title>
+  <link rel="icon" href="../logo.svg">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tilt+Neon&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/cataloguemain.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body style="background-color: gainsboro;">
+
+
+  <button id="navToggle" class="nav-toggle-btn" aria-label="Toggle menu" aria-expanded="false">
+    <span class="hamburger-icon">
+      <span class="hamburger-bar bar1"></span>
+      <span class="hamburger-bar bar2"></span>
+      <span class="hamburger-bar bar3"></span>
+    </span>
+  </button>
+  <!-- Overlay -->
+  <div id="navOverlay" class="nav-overlay"></div>
+  <!-- Floating Table of Contents Nav -->
+  <nav id="tocNav" class="toc-floating" aria-label="Table of Contents">
+    <div class="toc-title">Table of contents</div>
+     <ul class="toc-list">
+          <!-- <li class="tb-link" data-page="1"><a> HOME</a></li>
+          <li class="tb-link" data-page="2"><a> LIST OF SERVICES</a></li> -->
+          <li class="tb-link cursor-pointer" data-target="home" data-audio-path="../audios/home.mp3"><a> Home </a></li>
+            <li class="tb-link cursor-pointer" data-target="about-us" data-audio-path="../audios/about us.mp3"><a>About us</a></li>
+          <li class="tb-link cursor-pointer" data-target="products" data-audio-path="../audios/products.mp3"><a> Products  </a></li>
+        
+          
+          <li class="tb-link cursor-pointer" data-target="contact-us" data-audio-path="../audios/contact_us.mp3"><a> Contact Us  </a></li>
+          <!-- <li class="tb-link" data-page="28" data-audio-path="../audios/products.mp3"><a> PRODUCTS</a></li>
+          <li class="tb-link" data-page="40" data-audio-path="../audios/contact_us.mp3"><a> CONTACT US</a></li> -->
+        </ul>
+  </nav>
+  <audio id="navAudio"></audio>
+  <button id="shareBtn" class="share-btn" aria-label="Share this page">
+    <!-- Replace the previous SVG in your .share-btn with this: -->
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- White background with green border -->
+      <circle cx="15" cy="15" r="14" fill="#ffffff" stroke="#0f2f1d" stroke-width="2" />
+
+      <!-- Share icon in green -->
+      <g>
+        <circle cx="9" cy="15.5" r="2.5" fill="#0f2f1d" />
+        <circle cx="21" cy="8.5" r="2.5" fill="#0f2f1d" />
+        <circle cx="21" cy="21.5" r="2.5" fill="#0f2f1d" />
+        <path d="M11.2 14.2l7.6-4.2M11.2 16.8l7.6 4.2" stroke="#0f2f1d" stroke-width="1.6" stroke-linecap="round" />
+      </g>
+    </svg>
+
+
+
+  </button>
+  <!-- <div class="share-menu" id="shareMenu" role="menu" aria-hidden="true">
+        <div class="share-link-row">
+          <input id="shareInput" type="text">
+          <button id="copyLinkBtn" class="copy-link-btn" role="menuitem">Copy Link</button>
+        </div>
+        <span class="copied-msg" id="copiedMsg">Copied!</span>
+      </div> -->
+  <div class="share-menu" id="shareMenu" role="menu" aria-hidden="true">
+    <div class="share-link-row">
+      <input id="shareInput" type="text" value="https://yourwebsite.com" readonly>
+      <div class="flex gap-2">
+        <button id="copyLinkBtn" class="copy-link-btn" role="menuitem">Copy Link</button>
+        <button id="whatsappShareBtn" class="whatsapp-share-btn  " role="menuitem">
+          <img src=" https://img.icons8.com/fluency/48/whatsapp.png" alt="WhatsApp" width="30" height="30"
+            class="mt-[10%]">
+
+        </button>
+      </div>
+
+      <span class="copied-msg" id="copiedMsg">Copied!</span>
+      <!-- ✅ WhatsApp Share Button -->
+
+
+    </div>
+
+
+  </div>
+
+<div>
+  <img id="goToPage1" data-audio-path="../audios/home.mp3" src="../global assets/Images/TableOfContent/home-icon.svg" alt="home-icon" class="absolute w-[58px] h-[58px] right-[3%] top-[14%] p-[11px] z-1005 border-black rounded-full bg-white  hover:bg-[#074995] cursor-pointer fixed home-icon"/>
+</div>
+
+
+
+
+
+
+
+  <div class="back-top-wrapper">
+    <div class="back-top-button">
+      <i class="fa-solid fa-arrow-up"></i>
+    </div>
+  </div>
+
+ <!-- =====================================================page 5 want to replace================================================================= -->
+
+
+
+
+
+
+
+ <!-- =====================================================page end================================================================= -->
+ <!-- =====================================================page 1 Start================================================================= -->
+
+         <div class="page relative" id="home">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/page_1.png" class="w-[100%]  absolute top-[7%] left-[0%]  center_image "/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+
+<!-- =====================================================page 1 end================================================================= -->
+<!-- =====================================================page 2 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec flex items-center  ">
+            <img src="../global assets/Images/TimingPulley/5MM_PITCH_15MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[13%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 2 end================================================================= -->
+  <!-- =====================================================page 3 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_20MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[11%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 3 end================================================================= -->
+  <!-- =====================================================page 4 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_30MM_WIDE.png" class="w-[77%]  absolute top-[5%] left-[13%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 4 end================================================================= -->
+  <!-- =====================================================page 5 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_50MM_WIDE.png" class="w-[79%]  absolute top-[6%] left-[9%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 5 end================================================================= -->
+  <!-- =====================================================page 6 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_85MM_WIDE.png" class="w-[82%]  absolute top-[5%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 6 end================================================================= -->
+  <!-- =====================================================page 7 Start================================================================= -->
+        
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/14MM_PITCH_40MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 7 end================================================================= -->
+  <!-- =====================================================page 8 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/14MM_PITCH_55MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[14%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 8 end================================================================= -->
+  <!-- =====================================================page 9 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/14MM_PITCH_85MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[11%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 9 end================================================================= -->
+  <!-- =====================================================page 10 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/page_10.png" class="w-[90%]  absolute top-[7%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 10 end================================================================= -->
+  <!-- =====================================================page 11 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_11.png" class="w-[93%]  absolute top-[6%] left-[3%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 11 end================================================================= -->
+  <!-- =====================================================page 12 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_12.png" class="w-[82%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 12 end================================================================= -->
+  <!-- =====================================================page 13 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_13.png" class="w-[77%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 13 end================================================================= -->
+  <!-- =====================================================page 14 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_14.png" class="w-[87%]  absolute top-[7%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 14 end================================================================= -->
+  <!-- =====================================================page 15 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_15.png" class="w-[79%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 15 end================================================================= -->
+  <!-- =====================================================page 16 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_16.png" class="w-[85%]  absolute top-[7%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 16 end================================================================= -->
+<!-- =====================================================page 17 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_17.png" class="w-[85%]  absolute top-[6%] left-[7%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 17 end================================================================= -->
+ <!-- =====================================================page 18  Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_18.png" class="w-[79%]  absolute top-[6%] left-[11%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+
+<!-- =====================================================page 18 end================================================================= -->
+ <!-- =====================================================page 19 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_19.png" class="w-[72%]  absolute top-[6%] left-[13%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 19 end================================================================= -->
+ <!-- =====================================================page 20 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_20.png" class="w-[87%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 20 end================================================================= -->
+ <!-- =====================================================page 21 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_21.png" class="w-[81%]  absolute top-[6%] left-[9%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 21 end================================================================= -->
+ <!-- =====================================================page 22 Start================================================================= -->
+          <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_22.png" class="w-[78%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 22 end================================================================= -->
+ <!-- =====================================================page 23 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_23.png" class="w-[77%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 23 end================================================================= -->
+ <!-- =====================================================page 24 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_24.png" class="w-[78%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 24 end================================================================= -->
+ <!-- =====================================================page 25 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_25.png" class="w-[73%]  absolute top-[5%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 25 end================================================================= -->
+ <!-- =====================================================page 26 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_26.png" class="w-[73%]  absolute top-[5%] left-[14%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 26 end================================================================= -->
+ <!-- =====================================================page 27 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_27.png" class="w-[79%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 27 end================================================================= -->
+ <!-- =====================================================page 28 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_28.png" class="w-[86%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 28 end================================================================= -->
+ <!-- =====================================================page 29 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_29.png" class="w-[88%]  absolute top-[8%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 29 end================================================================= -->
+ <!-- =====================================================page 30 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_30.png" class="w-[76%]  absolute top-[6%] left-[13%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 30 end================================================================= -->
+ <!-- =====================================================page 31 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_31.png" class="w-[81%]  absolute top-[6%] left-[9%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 31 end================================================================= -->
+ <!-- =====================================================page 32 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_32.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 32 end================================================================= -->
+ <!-- =====================================================page 33 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_33.png" class="w-[74%]  absolute top-[5%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 33 end================================================================= -->
+ <!-- =====================================================page 34 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_34.png" class="w-[73%]  absolute top-[6%] left-[14%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 34 end================================================================= -->
+ <!-- =====================================================page 35 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_35.png" class="w-[75%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 35 end================================================================= -->
+ <!-- =====================================================page 36 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_36.png" class="w-[75%]  absolute top-[5%] left-[14%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 36 end================================================================= -->
+ <!-- =====================================================page 37 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_37.png" class="w-[74%]  absolute top-[5%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 37 end================================================================= -->
+ <!-- =====================================================page 38 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_38.png" class="w-[80%]  absolute top-[6%] left-[11%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 38 end================================================================= -->
+ <!-- =====================================================page 39 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_39.png" class="w-[90%]  absolute top-[6%] left-[5%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 39 end================================================================= -->
+ <!-- =====================================================page 40 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_40.png" class="w-[83%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 40 end================================================================= -->
+ <!-- =====================================================page 41 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_41.png" class="w-[72%]  absolute top-[5%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 41 end================================================================= -->
+ <!-- =====================================================page 42 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_42.png" class="w-[86%]  absolute top-[6%] left-[9%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 42 end================================================================= -->
+ <!-- =====================================================page 43 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_43.png" class="w-[81%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 43 end================================================================= -->
+ <!-- =====================================================page 44 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_44.png" class="w-[83%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 44 end================================================================= -->
+ <!-- =====================================================page 45 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_45.png" class="w-[82%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 45 end================================================================= -->
+ <!-- =====================================================page 46 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_46.png" class="w-[80%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 46 end================================================================= -->
+ <!-- =====================================================page 47 Start================================================================= -->
+           
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_47.png" class="w-[88%]  absolute top-[6%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 47 end================================================================= -->
+ <!-- =====================================================page 48 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_48.png" class="w-[82%]  absolute top-[5%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 48 end================================================================= -->
+ <!-- =====================================================page 49 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_49.png" class="w-[90%]  absolute top-[6%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 49 end================================================================= -->
+ <!-- =====================================================page 50 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_50.png" class="w-[80%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 50 end================================================================= -->
+ <!-- =====================================================page 51 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_51.png" class="w-[88%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 51 end================================================================= -->
+ <!-- =====================================================page 52 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_52.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 52 end================================================================= -->
+  <!-- =====================================================page 53 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_53.png" class="w-[73%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 53 end================================================================= -->
+ <!-- =====================================================page 54 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_54.png" class="w-[87%]  absolute top-[6%] left-[7%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 54 end================================================================= -->
+  <!-- =====================================================page 55 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_55.png" class="w-[90%]  absolute top-[6%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 55 end================================================================= -->
+ <!-- =====================================================page 56 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_56.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 56 end================================================================= -->
+  <!-- =====================================================page 57 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_57.png" class="w-[82%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 57 end================================================================= -->
+ <!-- =====================================================page 58 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Pin_Bush_Coupling/Page_58.png" class="w-[90%]  absolute top-[8%] left-[5%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 58 end================================================================= -->
+ <!-- =====================================================page 59 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Pin_Bush_Coupling/Page_59.png" class="w-[86%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 59 end================================================================= -->
+ <!-- =====================================================page 60 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Pin_Bush_Coupling/Page_60.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 60 end================================================================= -->
+  <!-- =====================================================page 61 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Pin_Bush_Coupling/Page_61.png" class="w-[84%]  absolute top-[5%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 61 end================================================================= -->
+ <!-- =====================================================page 62 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Pin_Bush_Coupling/Page_62.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 62 end================================================================= -->
+  <!-- =====================================================page 63 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Chain_Coupling/Page_63.png" class="w-[88%]  absolute top-[6%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 63 end================================================================= -->
+ <!-- =====================================================page 64 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Chain_Coupling/Page_64.png" class="w-[91%]  absolute top-[6%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 64 end================================================================= -->
+  <!-- =====================================================page 65 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Chain_Coupling/Page_65.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 65 end================================================================= -->
+ <!-- =====================================================page 66 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Chain_Coupling/Page_66.png" class="w-[72%]  absolute top-[6%] left-[10%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 66 end================================================================= -->
+  <!-- =====================================================page 67 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Chain_Coupling/Page_67.png" class="w-[82%]  absolute top-[6%] left-[12%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 67 end================================================================= -->
+ <!-- =====================================================page 68 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Chain_Coupling/Page_68.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 68 end================================================================= -->
+  <!-- =====================================================page 69 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/HRC_Coupling/Page_69.png" class="w-[88%]  absolute top-[6%] left-[6%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 69 end================================================================= -->
+ <!-- =====================================================page 70 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/HRC_Coupling/Page_70.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 70 end================================================================= -->
+  <!-- =====================================================page 71 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/HRC_Coupling/Page_71.png" class="w-[82%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 71 end================================================================= -->
+ <!-- =====================================================page 72 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/HRC_Coupling/Page_72.png" class="w-[62%]  absolute top-[6%] left-[14%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 72 end================================================================= -->
+  <!-- =====================================================page 73 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/HRC_Coupling/Page_73.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 73 end================================================================= -->
+ <!-- =====================================================page 74 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/ESSEX_Coupling/Page_74.png" class="w-[90%]  absolute top-[7%] left-[5%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 74 end================================================================= -->
+  <!-- =====================================================page 75 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/ESSEX_Coupling/Page_75.png" class="w-[80%]  absolute top-[6%] left-[9%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 75 end================================================================= -->
+ <!-- =====================================================page 76 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/ESSEX_Coupling/Page_76.png" class="w-[85%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 76 end================================================================= -->
+  <!-- =====================================================page 77 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_77.png" class="w-[90%]  absolute top-[6%] left-[5%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 77 end================================================================= -->
+ <!-- =====================================================page 78 Start================================================================= -->
+          <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_78.png" class="w-[93%]  absolute top-[8%] left-[4%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 78 end================================================================= -->
+  <!-- =====================================================page 79 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_79.png" class="w-[83%]  absolute top-[5%] left-[7%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 79 end================================================================= -->
+ <!-- =====================================================page 80 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_80.png" class="w-[82%]  absolute top-[6%] left-[9%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 80 end================================================================= -->
+  <!-- =====================================================page 81 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_81.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 81 end================================================================= -->
+ <!-- =====================================================page 82 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_82.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 82 end================================================================= -->
+  <!-- =====================================================page 83 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_83.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 83 end================================================================= -->
+ <!-- =====================================================page 84 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_84.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 84 end================================================================= -->
+  <!-- =====================================================page 85 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_85.png" class="w-[83%]  absolute top-[6%] left-[8%] center_image"/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 85 end================================================================= -->
+ <!-- =====================================================page 86 Start================================================================= -->
+         <div class="page relative">
+          <img src="../global assets/Images/white_blank.webp" alt="white_page" class="  w-[100%] h-[100%] top-[0] right-[0] white-page "/>
+              
+        <div class="absolute top-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_86.png" class="w-[90%]  absolute top-[6%] left-[5%] "/>
+          </div>
+         <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        
+        </div>
+<!-- =====================================================page 86 end================================================================= -->
+ 
+
+
+
+      
+
+  <audio id="infoAudio" preload="auto"></audio>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+  <script>
+    window.addEventListener("message", function (event) {
+      if (event.data && event.data.trigger === "startAnimation") {
+        const boxes = Array.from(document.querySelectorAll('.image-box'));
+        const order = [0, 1, 2, 5, 4, 3, 6, 7, 8];
+
+        order.forEach((i, index) => {
+          const box = boxes[i];
+          if (box) {
+            setTimeout(() => {
+              box.classList.add('fadeIn');
+            }, index * 500);
+          }
+        });
+      }
+    });
+
+  </script>
+
+
+
+ <!-- -------------------------------nav audio and scroll trigger-------------------- -->
+  <audio id="infoAudio" preload="auto"></audio>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <audio id="infoAudio"></audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tocLinks = document.querySelectorAll('.tb-link'); // all li items
+      const audio = document.getElementById('infoAudio');     // audio element
+
+      tocLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('data-target');       // section id
+          const audioPath = this.getAttribute('data-audio-path');  // audio file path
+          const targetEl = document.getElementById(targetId);
+
+          // Smooth scroll to section
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+
+          // Play audio
+          if (audioPath && audio) {
+            audio.src = audioPath;
+            audio.currentTime = 0; // restart from beginning
+            audio.play().catch(err => {
+              console.log("Audio play error:", err);
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+<!-- <script>
+  fetch('../images/table_of_content/table-of-content.svg')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('svg_container').innerHTML = data
+  })
+  .catch(e => {console.log(e)})
+</script> -->
+
+
+<script>
+  document.getElementById("whatsappShareBtn").addEventListener("click", function () {
+    const pageUrl = document.getElementById("shareInput").value || window.location.href;
+    const whatsappUrl = "https://wa.me/?text=" + encodeURIComponent(pageUrl);
+    window.open(whatsappUrl, "_blank");
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const homeBtn = document.getElementById("goToPage1");
+
+    homeBtn.addEventListener("click", function () {
+      // Scroll to target section
+      const targetEl = document.getElementById("home");
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // Play audio
+      const audioPath = homeBtn.dataset.audioPath;
+      if (audioPath) {
+        const audio = new Audio(audioPath);
+        audio.play().catch(err => {
+          console.warn("Audio play failed:", err);
+        });
+      }
+    });
+  });
+</script>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

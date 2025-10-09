@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bestomech</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind Css  -->
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- External JS dependencies -->
+  <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+  <script type="text/javascript" src="assets/js/backbone-min.js"></script>
+
+  <!-- Turn.js UI Kit -->
+  <script type="text/javascript" src="assets/js/turn.min.js"></script>
+
+  <!-- App dependencies -->
+  <script type="text/javascript" src="assets/js/app.js"></script>
+
+
+  <!-- External CSS dependencies -->
+  <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css">
+  </link>
+
+
+  <!-- App CSS dependencies -->
+  <link type="text/css" rel="stylesheet" href="./assets/css/main.css">
+  </link>
+
+  <!--  CSS dependencies -->
+  <link type="text/css" rel="stylesheet" href="./assets/css/lightbox.css">
+  </link>
+
+
+  <!------ Fontawesome link  ------->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Tilt+Neon&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/cataloguemain.css">
+
+  <!-- Favicon icon -->
+  <link rel="icon" href="../logo.svg" type="image/x-icon">
+
+  <!-- Fontawesome icon  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style type="text/css">
+    .page-1 .s1 {
+      -webkit-transform: translateY(100px);
+      -webkit-transition: all 1.5s;
+      opacity: 0;
+    }
+
+    .page-1 .s2 {
+      -webkit-transform: translateY(100px);
+      -webkit-transition: all 1s;
+      -webkit-transition-delay: 0.5s;
+      opacity: 0;
+      font-family: 'Carrois Gothic SC', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .page-1.animation-on .s1 {
+      -webkit-transform: translateY(0px);
+      opacity: 1;
+    }
+
+    .page-1.animation-on .s2 {
+      -webkit-transform: translateY(0px);
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- ***************************************************** DC started *************************************************-->
+
+  <div class="catalog-app">
+    <div id="viewer">
+
+      <button id="navToggle" class="nav-toggle-btn" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-icon">
+          <span class="hamburger-bar bar1"></span>
+          <span class="hamburger-bar bar2"></span>
+          <span class="hamburger-bar bar3"></span>
+        </span>
+      </button>
+      <!-- Overlay -->
+      <div id="navOverlay" class="nav-overlay"></div>
+      <!-- Floating Table of Contents Nav -->
+      <nav id="tocNav" class="toc-floating" aria-label="Table of Contents">
+        <div class="toc-title">Table of contents</div>
+        <ul class="toc-list">
+          <li class="tb-link cursor-pointer" data-page="1" data-audio-path="../audios/home.mp3"><a> Home </a></li>
+          <li class="tb-link cursor-pointer" data-page="2" data-audio-path="../audios/products.mp3"><a> Products </a>
+          </li>
+          <li class="tb-link cursor-pointer" data-page="2" data-audio-path="../audios/about us.mp3"><a>About us</a></li>
+      
+
+
+          <li class="tb-link cursor-pointer" data-page="12" data-audio-path="../audios/contact_us.mp3"><a> Contact Us
+            </a></li>
+        </ul>
+      </nav>
+
+      <audio id="navAudio"></audio>
+      <button id="shareBtn" class="share-btn" aria-label="Share this page">
+        <!-- Replace the previous SVG in your .share-btn with this: -->
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- White background with green border -->
+          <circle cx="15" cy="15" r="14" fill="#ffffff" stroke="#0f2f1d" stroke-width="2" />
+
+          <!-- Share icon in green -->
+          <g>
+            <circle cx="9" cy="15.5" r="2.5" fill="#0f2f1d" />
+            <circle cx="21" cy="8.5" r="2.5" fill="#0f2f1d" />
+            <circle cx="21" cy="21.5" r="2.5" fill="#0f2f1d" />
+            <path d="M11.2 14.2l7.6-4.2M11.2 16.8l7.6 4.2" stroke="#0f2f1d" stroke-width="1.6" stroke-linecap="round" />
+          </g>
+        </svg>
+      </button>
+
+      <div class="share-menu" id="shareMenu" role="menu" aria-hidden="true">
+        <div class="share-link-row">
+          <input id="shareInput" type="text" value="https://yourwebsite.com" readonly>
+          <button id="copyLinkBtn" class="copy-link-btn" role="menuitem">Copy Link</button>
+          <button id="whatsappShareBtn" class="whatsapp-share-btn" role="menuitem"
+            style="margin-right:0; margin-left: auto;cursor: pointer; ">
+            <img src=" https://img.icons8.com/fluency/48/whatsapp.png" alt="WhatsApp" width="32" height="32">
+          </button>
+        </div>
+        <span class="copied-msg" id="copiedMsg">Copied!</span>
+      </div>
+
+      <div>
+        <img id="goToPage1" data-audio-path="../audios/home.mp3" data-page="1"
+          src="../global assets/Images/TableOfContent/home-icon.svg" alt="home-icon" class="home-button" />
+      </div>
+
+
+      <div class="bgm-container">
+        <audio id="bgmAudio" loop>
+          <source src="../audios/Beloved(chosic.com).mp" type="audio/wav">
+        </audio>
+        <button id="bgmButton" class="bgm-toggle">🎵 ON</button>
+      </div>
+
+
+      <div class="full-screen">
+        <i class="fa-solid fa-expand"></i>
+      </div>
+
+      <div id="flipbook" class="ui-flipbook">
+
+
+
+
+
+
+
+  <!-- =====================================================page want to replace================================================================= -->
+    
+
+
+
+
+
+
+ <!-- =====================================================page end================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- =====================================================page 1 Start================================================================= -->
+          <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <div class="timing-pulley-top">
+              <img src="../global assets/Images/TimingPulley/timing_pulley.webp" alt="">
+              <img src="../global assets/Images/TimingPulley/tp_text.svg" alt="">
+              <!-- <button class="btn p-[2%] px-[4%] absolute top-[40%] right-[5%] z-1999 border rounded-full border-red-400 bg-blue-800">Click</button> -->
+
+
+ <button class="open-btn" onclick="openPopup()">Click</button>
+
+    <div class="popup-overlay z-1111111" id="popupOverlay">
+        <div class="popup-container">
+            <div class="popup-header">
+                <h2>Timing Pulley</h2>
+                <button class="close-btn" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div class="section">
+                    <div class="section-title">Enter Details</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Pulley Designation</label>
+                            <input type="text" id="pulleyDesignation" placeholder="e.g., 28-5-15">
+                        </div>
+                        <div class="form-group">
+                            <label>Pitch</label>
+                            <input type="text" id="pitch" placeholder="e.g., 5">
+                        </div>
+                        <div class="form-group">
+                            <label>Belt Width</label>
+                            <input type="text" id="beltWidth" placeholder="e.g., 15">
+                        </div>
+                        <div class="form-group">
+                            <label>No. Of Teeth</label>
+                            <input type="text" id="noOfTeeth" placeholder="e.g., 28">
+                        </div>
+                    </div>
+                    <button class="fetch-btn" onclick="fetchData()">Fetch Data</button>
+                    <div class="message" id="message"></div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Fetched Results</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Pulley Type</label>
+                            <input type="text" id="pulleyType" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Bush No.</label>
+                            <input type="text" id="bushNo" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Max Bore - Metric</label>
+                            <input type="text" id="maxBoreMetric" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Max Bore - Inch</label>
+                            <input type="text" id="maxBoreInch" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Pitch Dia</label>
+                            <input type="text" id="pitchDia" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Outside Dia</label>
+                            <input type="text" id="outsideDia" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>A</label>
+                            <input type="text" id="fieldA" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>F</label>
+                            <input type="text" id="fieldF" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>J</label>
+                            <input type="text" id="fieldJ" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>K</label>
+                            <input type="text" id="fieldK" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>L</label>
+                            <input type="text" id="fieldL" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>M</label>
+                            <input type="text" id="fieldM" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>N</label>
+                            <input type="text" id="fieldN" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+            </div>
+            <div class="timing-pulley-bottom">
+              <div class="pulley-left"><img src="../global assets/Images/TimingPulley/tp_grid.svg" alt=""></div>
+              <div class="pulley-right">
+                <img src="../global assets/Images/TimingPulley/tp_key.svg" alt=""><img
+                  src="../global assets/Images/TimingPulley/tp_range.svg" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 1 end================================================================= -->
+ <!-- =====================================================page 2 Start================================================================= -->
+    <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/5MM_PITCH_15MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[13%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 2 end================================================================= -->
+  <!-- =====================================================page 3 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_20MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[11%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 3 end================================================================= -->
+  <!-- =====================================================page 4 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_30MM_WIDE.png" class="w-[77%]  absolute top-[5%] left-[13%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 4 end================================================================= -->
+  <!-- =====================================================page 5 Start================================================================= -->
+        <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_50MM_WIDE.png" class="w-[79%]  absolute top-[6%] left-[9%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 5 end================================================================= -->
+  <!-- =====================================================page 6 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/8MM_PITCH_85MM_WIDE.png" class="w-[82%]  absolute top-[5%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 6 end================================================================= -->
+  <!-- =====================================================page 7 Start================================================================= -->
+        
+        <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/14MM_PITCH_40MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 7 end================================================================= -->
+  <!-- =====================================================page 8 Start================================================================= -->
+      <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/14MM_PITCH_55MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[14%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 8 end================================================================= -->
+  <!-- =====================================================page 9 Start================================================================= -->
+        <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/14MM_PITCH_85MM_WIDE.png" class="w-[77%]  absolute top-[6%] left-[11%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 9 end================================================================= -->
+  <!-- =====================================================page 10 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/TimingPulley/page_10.png" class="w-[90%]  absolute top-[7%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 10 end================================================================= -->
+  <!-- =====================================================page 11 Start================================================================= -->
+      <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_11.png" class="w-[93%]  absolute top-[6%] left-[3%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 11 end================================================================= -->
+  <!-- =====================================================page 12 Start================================================================= -->
+        <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_12.png" class="w-[82%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 12 end================================================================= -->
+  <!-- =====================================================page 13 Start================================================================= -->
+         <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_13.png" class="w-[77%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 13 end================================================================= -->
+  <!-- =====================================================page 14 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_14.png" class="w-[87%]  absolute top-[7%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 14 end================================================================= -->
+  <!-- =====================================================page 15 Start================================================================= -->
+            <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_15.png" class="w-[79%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 15 end================================================================= -->
+  <!-- =====================================================page 16 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_16.png" class="w-[85%]  absolute top-[7%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 16 end================================================================= -->
+<!-- =====================================================page 17 Start================================================================= -->
+          <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_17.png" class="w-[85%]  absolute top-[6%] left-[7%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 17 end================================================================= -->
+ <!-- =====================================================page 18  Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_18.png" class="w-[79%]  absolute top-[6%] left-[11%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+
+<!-- =====================================================page 18 end================================================================= -->
+ <!-- =====================================================page 19 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_19.png" class="w-[72%]  absolute top-[6%] left-[13%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 19 end================================================================= -->
+ <!-- =====================================================page 20 Start================================================================= -->
+     <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_20.png" class="w-[87%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 20 end================================================================= -->
+ <!-- =====================================================page 21 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_21.png" class="w-[81%]  absolute top-[6%] left-[9%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 21 end================================================================= -->
+ <!-- =====================================================page 22 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_22.png" class="w-[78%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 22 end================================================================= -->
+ <!-- =====================================================page 23 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_23.png" class="w-[77%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 23 end================================================================= -->
+ <!-- =====================================================page 24 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_24.png" class="w-[78%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 24 end================================================================= -->
+ <!-- =====================================================page 25 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_25.png" class="w-[73%]  absolute top-[5%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 25 end================================================================= -->
+ <!-- =====================================================page 26 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_26.png" class="w-[73%]  absolute top-[5%] left-[14%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 26 end================================================================= -->
+ <!-- =====================================================page 27 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_27.png" class="w-[79%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 27 end================================================================= -->
+ <!-- =====================================================page 28 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_28.png" class="w-[86%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 28 end================================================================= -->
+ <!-- =====================================================page 29 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_29.png" class="w-[88%]  absolute top-[8%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 29 end================================================================= -->
+ <!-- =====================================================page 30 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_30.png" class="w-[76%]  absolute top-[6%] left-[13%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 30 end================================================================= -->
+ <!-- =====================================================page 31 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_31.png" class="w-[81%]  absolute top-[6%] left-[9%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 31 end================================================================= -->
+ <!-- =====================================================page 32 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_32.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 32 end================================================================= -->
+ <!-- =====================================================page 33 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_33.png" class="w-[74%]  absolute top-[5%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 33 end================================================================= -->
+ <!-- =====================================================page 34 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_34.png" class="w-[73%]  absolute top-[6%] left-[14%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 34 end================================================================= -->
+ <!-- =====================================================page 35 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_35.png" class="w-[75%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 35 end================================================================= -->
+ <!-- =====================================================page 36 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_36.png" class="w-[75%]  absolute top-[5%] left-[14%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 36 end================================================================= -->
+ <!-- =====================================================page 37 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Poly_v_pulley/Page_37.png" class="w-[74%]  absolute top-[5%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 37 end================================================================= -->
+ <!-- =====================================================page 38 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Poly_v_pulley/Page_38.png" class="w-[80%]  absolute top-[6%] left-[11%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 38 end================================================================= -->
+ <!-- =====================================================page 39 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_39.png" class="w-[90%]  absolute top-[6%] left-[5%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 39 end================================================================= -->
+ <!-- =====================================================page 40 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_40.png" class="w-[83%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 40 end================================================================= -->
+ <!-- =====================================================page 41 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_41.png" class="w-[72%]  absolute top-[5%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 41 end================================================================= -->
+ <!-- =====================================================page 42 Start================================================================= -->
+       <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_42.png" class="w-[86%]  absolute top-[6%] left-[9%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 42 end================================================================= -->
+ <!-- =====================================================page 43 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_43.png" class="w-[81%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 43 end================================================================= -->
+ <!-- =====================================================page 44 Start================================================================= -->
+         <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_44.png" class="w-[83%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 44 end================================================================= -->
+ <!-- =====================================================page 45 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_45.png" class="w-[82%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 45 end================================================================= -->
+ <!-- =====================================================page 46 Start================================================================= -->
+         <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_46.png" class="w-[80%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 46 end================================================================= -->
+ <!-- =====================================================page 47 Start================================================================= -->
+           
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Tyre_Coupling/Page_47.png" class="w-[88%]  absolute top-[6%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 47 end================================================================= -->
+ <!-- =====================================================page 48 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Tyre_Coupling/Page_48.png" class="w-[82%]  absolute top-[5%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 48 end================================================================= -->
+ <!-- =====================================================page 49 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_49.png" class="w-[90%]  absolute top-[6%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 49 end================================================================= -->
+ <!-- =====================================================page 50 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_50.png" class="w-[80%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 50 end================================================================= -->
+ <!-- =====================================================page 51 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_51.png" class="w-[88%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 51 end================================================================= -->
+ <!-- =====================================================page 52 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_52.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 52 end================================================================= -->
+  <!-- =====================================================page 53 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_53.png" class="w-[73%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 53 end================================================================= -->
+ <!-- =====================================================page 54 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_54.png" class="w-[87%]  absolute top-[6%] left-[7%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 54 end================================================================= -->
+  <!-- =====================================================page 55 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_55.png" class="w-[90%]  absolute top-[6%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 55 end================================================================= -->
+ <!-- =====================================================page 56 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Gear_Coupling/Page_56.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 56 end================================================================= -->
+  <!-- =====================================================page 57 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Gear_Coupling/Page_57.png" class="w-[82%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 57 end================================================================= -->
+ <!-- =====================================================page 58 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Pin_Bush_Coupling/Page_58.png" class="w-[90%]  absolute top-[8%] left-[5%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 58 end================================================================= -->
+ <!-- =====================================================page 59 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Pin_Bush_Coupling/Page_59.png" class="w-[86%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 59 end================================================================= -->
+ <!-- =====================================================page 60 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Pin_Bush_Coupling/Page_60.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 60 end================================================================= -->
+  <!-- =====================================================page 61 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Pin_Bush_Coupling/Page_61.png" class="w-[84%]  absolute top-[5%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 61 end================================================================= -->
+ <!-- =====================================================page 62 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Pin_Bush_Coupling/Page_62.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 62 end================================================================= -->
+  <!-- =====================================================page 63 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Chain_Coupling/Page_63.png" class="w-[88%]  absolute top-[6%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 63 end================================================================= -->
+ <!-- =====================================================page 64 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Chain_Coupling/Page_64.png" class="w-[91%]  absolute top-[6%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 64 end================================================================= -->
+  <!-- =====================================================page 65 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Chain_Coupling/Page_65.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 65 end================================================================= -->
+ <!-- =====================================================page 66 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Chain_Coupling/Page_66.png" class="w-[72%]  absolute top-[6%] left-[10%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 66 end================================================================= -->
+  <!-- =====================================================page 67 Start================================================================= -->
+
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Chain_Coupling/Page_67.png" class="w-[82%]  absolute top-[6%] left-[12%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 67 end================================================================= -->
+ <!-- =====================================================page 68 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Chain_Coupling/Page_68.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 68 end================================================================= -->
+  <!-- =====================================================page 69 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/HRC_Coupling/Page_69.png" class="w-[88%]  absolute top-[6%] left-[6%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 69 end================================================================= -->
+ <!-- =====================================================page 70 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/HRC_Coupling/Page_70.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 70 end================================================================= -->
+  <!-- =====================================================page 71 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/HRC_Coupling/Page_71.png" class="w-[82%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 71 end================================================================= -->
+ <!-- =====================================================page 72 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/HRC_Coupling/Page_72.png" class="w-[62%]  absolute top-[6%] left-[14%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 72 end================================================================= -->
+  <!-- =====================================================page 73 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/HRC_Coupling/Page_73.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 73 end================================================================= -->
+ <!-- =====================================================page 74 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/ESSEX_Coupling/Page_74.png" class="w-[90%]  absolute top-[7%] left-[5%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 74 end================================================================= -->
+ v
+  <!-- =====================================================page 75 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/ESSEX_Coupling/Page_75.png" class="w-[80%]  absolute top-[6%] left-[9%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 75 end================================================================= -->
+ <!-- =====================================================page 76 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/ESSEX_Coupling/Page_76.png" class="w-[85%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 76 end================================================================= -->
+  <!-- =====================================================page 77 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_77.png" class="w-[90%]  absolute top-[6%] left-[5%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 77 end================================================================= -->
+ <!-- =====================================================page 78 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_78.png" class="w-[93%]  absolute top-[8%] left-[4%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 78 end================================================================= -->
+  <!-- =====================================================page 79 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_79.png" class="w-[83%]  absolute top-[5%] left-[7%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 79 end================================================================= -->
+ <!-- =====================================================page 80 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_80.png" class="w-[82%]  absolute top-[6%] left-[9%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 80 end================================================================= -->
+  <!-- =====================================================page 81 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_81.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 81 end================================================================= -->
+ <!-- =====================================================page 82 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_82.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 82 end================================================================= -->
+  <!-- =====================================================page 83 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_83.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 83 end================================================================= -->
+ <!-- =====================================================page 84 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_84.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 84 end================================================================= -->
+  <!-- =====================================================page 85 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images/Diverter_Wheel/Page_85.png" class="w-[83%]  absolute top-[6%] left-[8%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+    </div>
+<!-- =====================================================page 85 end================================================================= -->
+ <!-- =====================================================page 86 Start================================================================= -->
+           <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+             <img src="../global assets/Images/Diverter_Wheel/Page_86.png" class="w-[90%]  absolute top-[6%] left-[5%]"/>
+          </div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div>
+<!-- =====================================================page 86 end================================================================= -->
+ 
+
+
+
+
+
+       <!-- <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
+          <div class="midsec"></div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
+        </div> -->
+
+
+        <!-- <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec"></div>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div> -->
+
+        <a ignore="1" class="ui-arrow-control ui-arrow-next-page"></a>
+        <a ignore="1" class="ui-arrow-control ui-arrow-previous-page"></a>
+      </div>
+    </div>
+
+
+
+    <!-- <audio id="page-8audio">
+      <source src="../assets/voice/contactus.mp3" type="audio/mp3">
+    </audio> -->
+
+    <audio id="flipaudio" src="./pageflip.mp3"></audio>
+
+    <!-- controls -->
+    <div id="controls">
+      <div class="all">
+
+
+        <!-- zoom slider -->
+        <div id="zoom-slider-view" class="zoom-slider">
+          <div class="bg">
+            <div class="ui-slider" id="zoom-slider">
+              <div class="bar">
+                <div class="progress-width">
+                  <div class="progress">
+                    <div class="handler"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- / zoom slider -->
+      </div>
+
+      <div id="ui-icon-expand-options">
+        <a class="ui-icon show-hint">
+          <i class="fa fa-ellipsis-h"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- / controls -->
+
+    <!-- miniatures -->
+    <div id="miniatures" class="ui-miniatures-slider">
+    </div>
+    <!-- / miniatures -->
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
+  <script type="text/javascript">
+    // Change these settings
+
+    gsap.config({
+      nullTargetWarn: false
+    });
+
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    const normal = { width: 1300, height: 800 };
+
+    const heightLower = (windowHeight >= 700) ? 690 : 550;
+    const widthLower = (windowHeight >= 700) ? 1100 : 900;
+
+    const lower = { width: widthLower, height: heightLower };
+
+    const crctSize = (windowWidth > 1280) ? normal : lower;
+
+    console.log('correct width: ', crctSize.width);
+    console.log('correct height: ', crctSize.height);
+    FlipbookSettings = {
+      options: {
+        width: crctSize.width,
+        height: crctSize.height,
+        autoCenter: true,
+        pages: 8,
+        when: {
+          turning: function (e, page, view) {
+            var audio = document.getElementById("flipaudio");
+            audio.play();
+          }
+        },
+      },
+    };
+
+    $(window).load(function (event) {
+      $("#flipbook .page-1").addClass('animation-on');
+    });
+    $('.full-screen').on('click', function () {
+      window.parent.postMessage({ action: "toggleFullscreen" }, "*");
+    });
+
+    // $('#flipbook').bind('turned', function (event, page, view) {
+    //   console.log(`event: ${event}`);
+    //   console.log(`view: ${view}`);
+    //   animateImages(view);
+    //   resetPageImages();
+    // });
+
+    $('#flipbook').bind('turning', function (event, page, view) {
+      resetPageImages(); // Clear or reset before the page turns
+    });
+
+    // $(document).ready(function () {
+    //   $('.nav-links, .tb-link').on('click', function (e) {
+    //     e.preventDefault(); // Prevent default anchor behavior
+    //     var pageNumber = $(this).data('page'); // Get page number
+    //     var audioPath = $(this).data('audio-path'); // Get audio path
+
+    //     // 1. Flip the page
+    //     $('#flipbook').turn('page', pageNumber);
+
+    //     if (pageNumber === 8 || pageNumber === 9) textAnimation();
+    //     else if (pageNumber === 10 || pageNumber === 11) { page23Animation(); textAnimation(); }
+    //     else if (pageNumber === 26 || pageNumber === 27) page23Animation();
+    //     // if (pageNumber === 24 || pageNumber === 25) trigger3DAnimation(); 
+    //     // 2. Play the audio
+    //     if (audioPath) {
+    //       var audio = document.getElementById('infoAudio');
+    //       // Set new source if different
+    //       if (audio.src !== (location.origin + "/" + audioPath) && audio.src !== audioPath) {
+    //         audio.src = audioPath;
+    //       }
+    //       audio.currentTime = 0;
+    //       audio.play();
+    //     }
+    //   });
+    // });
+
+    // const popup_pgs = [4, 5, 6, 7, 8, 9, 10, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+    // const slideIn_pgs = [1, 2, 4, 6, 7, 8, , 9, 10, 11, 12, 13, 14, 15, 16];
+    // const fadeIn_pgs = [3, 4, 25, 26, 28];
+
+    // function animateImages(view) {
+    //   const [leftPage, rightPage] = view.toString().split(',').map(Number);
+
+    //   if (popup_pgs.includes(leftPage) || popup_pgs.includes(rightPage)) { popupImage(leftPage, rightPage); }
+    //   if (slideIn_pgs.includes(leftPage) || slideIn_pgs.includes(rightPage)) { slideUpImage(leftPage, rightPage); }
+    //   if (fadeIn_pgs.includes(leftPage) || fadeIn_pgs.includes(rightPage)) { fadeInImage(leftPage, rightPage); }
+    // }
+
+    function popupImage(leftPage, rightPage) {
+      // popup for application pages
+      gsap.fromTo(`.page-${leftPage} .services_grid_main img`,
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          stagger: 0.2,
+          duration: 0.75,
+          ease: "power3.out"
+        }
+      );
+      gsap.fromTo(`.page-${rightPage} .services_grid_main img`,
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          stagger: 0.2,
+          duration: 0.75,
+          ease: "power3.out"
+        }
+      );
+
+      // popup for normal usage
+      gsap.fromTo(`.page-${leftPage} .popup`,
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          stagger: 0.2,
+          duration: 0.75,
+          ease: "power3.out"
+        }
+      );
+      gsap.fromTo(`.page-${rightPage} .popup`,
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          stagger: 0.2,
+          duration: 0.75,
+          ease: "power3.out"
+        }
+      );
+    }
+
+    function slideUpImage(leftPage, rightPage) {
+      gsap.fromTo(`.page-${leftPage} .slide_up_image`,
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          duration: 0.95,
+          ease: "power3.out"
+        }
+      );
+      gsap.fromTo(`.page-${rightPage} .slide_up_image`,
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          duration: 0.95,
+          ease: "power3.out"
+        }
+      );
+    }
+
+    function fadeInImage(leftPage, rightPage) {
+      gsap.fromTo(`.page-${leftPage} .fade_in_images`,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          stagger: 0.2,
+          duration: 0.95,
+          ease: "power3.out"
+        }
+      );
+      gsap.fromTo(`.page-${rightPage} .fade_in_images`,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          stagger: 0.2,
+          duration: 0.95,
+          ease: "power3.out"
+        }
+      );
+    }
+
+    function resetPageImages() {
+      gsap.set('.services_grid_main img, .slide_up_image, .fade_in_images, .popup', { opacity: 0 });
+    }
+
+  </script>
+
+
+  <!-- <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js  "></script> -->
+  <script type="text/javascript" src="script.js"></script>
+
+
+     <script>
+        // Data from the table
+        const pulleyData = [
+            {
+                pulleyDesignation: "28-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "28",
+                pulleyType: "1F",
+                bushNo: "-",
+                maxBoreMetric: "19",
+                maxBoreInch: "3/4",
+                pitchDia: "44.56",
+                outsideDia: "43.42",
+                a: "49",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "30",
+                m: "8",
+                n: "31"
+            },
+            {
+                pulleyDesignation: "32-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "32",
+                pulleyType: "1F",
+                bushNo: "-",
+                maxBoreMetric: "22",
+                maxBoreInch: "7/8",
+                pitchDia: "50.93",
+                outsideDia: "49.79",
+                a: "56",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "30",
+                m: "8",
+                n: "38"
+            },
+            {
+                pulleyDesignation: "34-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "34",
+                pulleyType: "2F",
+                bushNo: "1008",
+                maxBoreMetric: "25",
+                maxBoreInch: "1",
+                pitchDia: "54.11",
+                outsideDia: "52.97",
+                a: "57",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "22",
+                m: "0",
+                n: "0"
+            },
+            {
+                pulleyDesignation: "36-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "36",
+                pulleyType: "2F",
+                bushNo: "1008",
+                maxBoreMetric: "28",
+                maxBoreInch: "1 1/8",
+                pitchDia: "57.3",
+                outsideDia: "56.15",
+                a: "62",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "22",
+                m: "0",
+                n: "0"
+            },
+            {
+                pulleyDesignation: "38-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "38",
+                pulleyType: "2F",
+                bushNo: "1008",
+                maxBoreMetric: "28",
+                maxBoreInch: "1 1/8",
+                pitchDia: "60.48",
+                outsideDia: "59.34",
+                a: "66",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "22",
+                m: "0",
+                n: "0"
+            },
+            {
+                pulleyDesignation: "40-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "40",
+                pulleyType: "2F",
+                bushNo: "1008",
+                maxBoreMetric: "28",
+                maxBoreInch: "1 1/8",
+                pitchDia: "63.66",
+                outsideDia: "62.52",
+                a: "70",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "22",
+                m: "0",
+                n: "0"
+            },
+            {
+                pulleyDesignation: "44-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "44",
+                pulleyType: "2F",
+                bushNo: "1008",
+                maxBoreMetric: "28",
+                maxBoreInch: "1 1/8",
+                pitchDia: "70.03",
+                outsideDia: "68.89",
+                a: "75",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "22",
+                m: "0",
+                n: "0"
+            },
+            {
+                pulleyDesignation: "48-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "48",
+                pulleyType: "2F",
+                bushNo: "1210",
+                maxBoreMetric: "32",
+                maxBoreInch: "1 1/4",
+                pitchDia: "76.39",
+                outsideDia: "75.25",
+                a: "79",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "25",
+                m: "3",
+                n: "59"
+            },
+            {
+                pulleyDesignation: "56-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "56",
+                pulleyType: "2F",
+                bushNo: "1210",
+                maxBoreMetric: "32",
+                maxBoreInch: "1 1/4",
+                pitchDia: "89.13",
+                outsideDia: "87.98",
+                a: "95",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "25",
+                m: "3",
+                n: "75"
+            },
+            {
+                pulleyDesignation: "64-5-15",
+                pitch: "5",
+                beltWidth: "15",
+                noOfTeeth: "64",
+                pulleyType: "2F",
+                bushNo: "1210",
+                maxBoreMetric: "32",
+                maxBoreInch: "1 1/4",
+                pitchDia: "101.86",
+                outsideDia: "100.72",
+                a: "106",
+                f: "22",
+                j: "-",
+                k: "-",
+                l: "25",
+                m: "3",
+                n: "80"
+            }
+        ];
+
+        function openPopup() {
+            document.getElementById('popupOverlay').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('active');
+            clearForm();
+        }
+
+        function clearForm() {
+            document.getElementById('pulleyDesignation').value = '';
+            document.getElementById('pitch').value = '';
+            document.getElementById('beltWidth').value = '';
+            document.getElementById('noOfTeeth').value = '';
+            
+            document.getElementById('pulleyType').value = '';
+            document.getElementById('bushNo').value = '';
+            document.getElementById('maxBoreMetric').value = '';
+            document.getElementById('maxBoreInch').value = '';
+            document.getElementById('pitchDia').value = '';
+            document.getElementById('outsideDia').value = '';
+            document.getElementById('fieldA').value = '';
+            document.getElementById('fieldF').value = '';
+            document.getElementById('fieldJ').value = '';
+            document.getElementById('fieldK').value = '';
+            document.getElementById('fieldL').value = '';
+            document.getElementById('fieldM').value = '';
+            document.getElementById('fieldN').value = '';
+            
+            hideMessage();
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            msg.style.display = 'block';
+        }
+
+        function hideMessage() {
+            document.getElementById('message').style.display = 'none';
+        }
+
+        function fetchData() {
+            hideMessage();
+            
+            const pulleyDesignation = document.getElementById('pulleyDesignation').value.trim();
+            const pitch = document.getElementById('pitch').value.trim();
+            const beltWidth = document.getElementById('beltWidth').value.trim();
+            const noOfTeeth = document.getElementById('noOfTeeth').value.trim();
+
+            if (!pulleyDesignation || !pitch || !beltWidth || !noOfTeeth) {
+                showMessage('Please fill in all input fields', 'error');
+                return;
+            }
+
+            const result = pulleyData.find(item => 
+                item.pulleyDesignation === pulleyDesignation &&
+                item.pitch === pitch &&
+                item.beltWidth === beltWidth &&
+                item.noOfTeeth === noOfTeeth
+            );
+
+            if (result) {
+                document.getElementById('pulleyType').value = result.pulleyType;
+                document.getElementById('bushNo').value = result.bushNo;
+                document.getElementById('maxBoreMetric').value = result.maxBoreMetric;
+                document.getElementById('maxBoreInch').value = result.maxBoreInch;
+                document.getElementById('pitchDia').value = result.pitchDia;
+                document.getElementById('outsideDia').value = result.outsideDia;
+                document.getElementById('fieldA').value = result.a;
+                document.getElementById('fieldF').value = result.f;
+                document.getElementById('fieldJ').value = result.j;
+                document.getElementById('fieldK').value = result.k;
+                document.getElementById('fieldL').value = result.l;
+                document.getElementById('fieldM').value = result.m;
+                document.getElementById('fieldN').value = result.n;
+                
+                showMessage('Data fetched successfully!', 'success');
+            } else {
+                showMessage('No matching data found. Please check your inputs.', 'error');
+            }
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+
+
+</body>
+
+
+</html>
