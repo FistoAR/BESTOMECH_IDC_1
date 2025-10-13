@@ -12,6 +12,11 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+     
+<!-- papa parse for data fetch from excel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,6 +120,103 @@
 
   </div>
 
+            <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-container">
+            <div class="popup-header">
+                <h2>Timing Pulley</h2>
+                <button class="close-btn" onclick="closePopup()">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div class="section">
+                    <div class="section-title">Enter Details</div>
+                    <div class="input-row">
+                        <div class="form-group">
+                            <label>Pulley Designation</label>
+                            <input type="text" id="pulleyDesignation" placeholder="e.g., 28-5-15">
+                        </div>
+                        <div class="form-group">
+                            <label>Pitch</label>
+                            <input type="text" id="pitch" placeholder="e.g., 5">
+                        </div>
+                        <div class="form-group">
+                            <label>Belt Width</label>
+                            <input type="text" id="beltWidth" placeholder="e.g., 15">
+                        </div>
+                        <div class="form-group">
+                            <label>No. Of Teeth</label>
+                            <input type="text" id="noOfTeeth" placeholder="e.g., 28">
+                        </div>
+                    </div>
+                    <button class="fetch-btn" onclick="fetchData()">Search</button>
+                    <div class="message" id="message"></div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Fetched Results</div>
+                    <div class="form-group" style="grid-column: 1 / -1; margin-bottom: 15px;">
+        <label>Section Title</label>
+        <input type="text" id="sectionTitle" disabled style="background: #f0f9ff; color: #1e40af; font-weight: 600;">
+    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Pulley Type</label>
+                            <input type="text" id="pulleyType" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Bush No.</label>
+                            <input type="text" id="bushNo" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Max Bore - Metric</label>
+                            <input type="text" id="maxBoreMetric" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Max Bore - Inch</label>
+                            <input type="text" id="maxBoreInch" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Pitch Dia</label>
+                            <input type="text" id="pitchDia" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Outside Dia</label>
+                            <input type="text" id="outsideDia" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>A</label>
+                            <input type="text" id="fieldA" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>F</label>
+                            <input type="text" id="fieldF" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>J</label>
+                            <input type="text" id="fieldJ" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>K</label>
+                            <input type="text" id="fieldK" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>L</label>
+                            <input type="text" id="fieldL" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>M</label>
+                            <input type="text" id="fieldM" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>N</label>
+                            <input type="text" id="fieldN" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 <div>
   <img id="goToPage1" data-audio-path="../audios/home.mp3" src="../global assets/Images/TableOfContent/home-icon.svg" alt="home-icon" class="absolute w-[58px] h-[58px] right-[3%] top-[14%] p-[11px] z-1005 border-black rounded-full bg-white  hover:bg-[#074995] cursor-pointer fixed home-icon"/>
 </div>
@@ -149,6 +251,10 @@
           <div class="midsec">
             <img src="../global assets/Images/TimingPulley/page_1.png" class="w-[100%]  absolute top-[7%] left-[0%]  center_image "/>
           </div>
+          <button class="open-btn" style="right: 20%;
+    position: absolute;
+    top: 36%;" onclick="openPopup()">Click</button>
+
          <div class="absolute bottom-0 left-[2%]"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
         
         </div>
@@ -1286,7 +1392,243 @@
     });
   });
 </script>
+<script>
+  let pulleyData = [];
 
+// Load CSV file automatically when page loads
+window.addEventListener('DOMContentLoaded', () => {
+  Papa.parse("../TIMING PULLEY.csv", {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    transformHeader: function(header) {
+      return header.trim();
+    },
+    complete: function(results) {
+      let currentTitle = '';
+      
+      // Process all rows and capture section titles
+      pulleyData = results.data
+        .map(row => {
+          const firstCol = Object.values(row)[0]?.trim() || '';
+          
+          // Check if this row is a section title
+          if (firstCol.includes('PITCH') && firstCol.includes('PULLEY')) {
+            currentTitle = firstCol;
+            return null; // Skip this row in data
+          }
+          
+          // Skip header rows
+          if (firstCol === 'Pulley Designation' || firstCol === '') {
+            return null;
+          }
+          
+          // This is a data row
+          if (firstCol && !firstCol.includes('PITCH')) {
+            const values = Object.values(row);
+            
+            return {
+              sectionTitle: currentTitle, // Add section title to each data row
+              pulleyDesignation: values[0]?.trim() || '',
+              pitch: values[1]?.trim() || '',
+              beltWidth: values[2]?.trim() || '',
+              noOfTeeth: values[3]?.trim() || '',
+              pulleyType: values[4]?.trim() || '',
+              bushNo: values[5]?.trim() || '',
+              maxBoreMetric: values[6]?.trim() || '',
+              maxBoreInch: values[7]?.trim() || '',
+              pitchDia: values[8]?.trim() || '',
+              outsideDia: values[9]?.trim() || '',
+              a: values[10]?.trim() || '',
+              f: values[11]?.trim() || '',
+              j: values[12]?.trim() || '',
+              k: values[13]?.trim() || '',
+              l: values[14]?.trim() || '',
+              m: values[15]?.trim() || '',
+              n: values[16]?.trim() || ''
+            };
+          }
+          
+          return null;
+        })
+        .filter(row => row !== null); // Remove null entries
+      
+      console.log("✅ Pulley data loaded:", pulleyData);
+      console.log("Sample entry with title:", pulleyData[0]);
+    },
+    error: function(error) {
+      console.error("Error loading CSV:", error);
+      showMessage('Error loading pulley data', 'error');
+    }
+  });
+});
+
+function fetchData() {
+  hideMessage();
+  
+  const pulleyDesignation = document.getElementById('pulleyDesignation').value.trim();
+  const pitch = document.getElementById('pitch').value.trim();
+  const beltWidth = document.getElementById('beltWidth').value.trim();
+  const noOfTeeth = document.getElementById('noOfTeeth').value.trim();
+
+  if (!pulleyDesignation || !pitch || !beltWidth || !noOfTeeth) {
+    showMessage('Please fill in all input fields', 'error');
+    return;
+  }
+
+  console.log('Searching for:', { pulleyDesignation, pitch, beltWidth, noOfTeeth });
+
+  const result = pulleyData.find(item => 
+    item.pulleyDesignation === pulleyDesignation &&
+    item.pitch === pitch &&
+    item.beltWidth === beltWidth &&
+    item.noOfTeeth === noOfTeeth
+  );
+
+  if (result) {
+    // Display section title
+    document.getElementById('sectionTitle').value = result.sectionTitle;
+    
+    document.getElementById('pulleyType').value = result.pulleyType;
+    document.getElementById('bushNo').value = result.bushNo;
+    document.getElementById('maxBoreMetric').value = result.maxBoreMetric;
+    document.getElementById('maxBoreInch').value = result.maxBoreInch;
+    document.getElementById('pitchDia').value = result.pitchDia;
+    document.getElementById('outsideDia').value = result.outsideDia;
+    document.getElementById('fieldA').value = result.a;
+    document.getElementById('fieldF').value = result.f;
+    document.getElementById('fieldJ').value = result.j;
+    document.getElementById('fieldK').value = result.k;
+    document.getElementById('fieldL').value = result.l;
+    document.getElementById('fieldM').value = result.m;
+    document.getElementById('fieldN').value = result.n;
+    
+    showMessage('Data fetched successfully!', 'success');
+  } else {
+    showMessage('No matching data found. Please check your inputs.', 'error');
+    console.log('Available data sample:', pulleyData.slice(0, 3));
+  }
+}
+
+function openPopup() {
+  document.getElementById('popupOverlay').classList.add('active');
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').classList.remove('active');
+  clearForm();
+}
+
+function clearForm() {
+  document.getElementById('pulleyDesignation').value = '';
+  document.getElementById('pitch').value = '';
+  document.getElementById('beltWidth').value = '';
+  document.getElementById('noOfTeeth').value = '';
+  
+  document.getElementById('sectionTitle').value = '';
+  document.getElementById('pulleyType').value = '';
+  document.getElementById('bushNo').value = '';
+  document.getElementById('maxBoreMetric').value = '';
+  document.getElementById('maxBoreInch').value = '';
+  document.getElementById('pitchDia').value = '';
+  document.getElementById('outsideDia').value = '';
+  document.getElementById('fieldA').value = '';
+  document.getElementById('fieldF').value = '';
+  document.getElementById('fieldJ').value = '';
+  document.getElementById('fieldK').value = '';
+  document.getElementById('fieldL').value = '';
+  document.getElementById('fieldM').value = '';
+  document.getElementById('fieldN').value = '';
+  
+  hideMessage();
+}
+
+function showMessage(text, type) {
+  const msg = document.getElementById('message');
+  msg.textContent = text;
+  msg.className = `message ${type}`;
+  msg.style.display = 'block';
+}
+
+function hideMessage() {
+  document.getElementById('message').style.display = 'none';
+}
+
+document.getElementById('popupOverlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closePopup();
+  }
+});
+
+
+document.getElementById('pulleyDesignation').addEventListener('input', function(e) {
+    // Check if backspace was pressed
+    if (e.inputType === 'deleteContentBackward') {
+        return; // Let backspace work normally
+    }
+    
+    let value = e.target.value.replace(/[^0-9-]/g, '');
+    
+    // Remove extra hyphens (max 2 hyphens)
+    let parts = value.split('-');
+    if (parts.length > 3) {
+        value = parts.slice(0, 3).join('-');
+    }
+    
+    // Count only digits
+    let digitsOnly = value.replace(/-/g, '');
+    if (digitsOnly.length > 6) {
+        digitsOnly = digitsOnly.substring(0, 6);
+    }
+    
+    // Check if user manually typed hyphen
+    let manualHyphen = value.includes('-');
+    
+    if (!manualHyphen) {
+        // Auto-add hyphen after every 2 digits
+        let formatted = digitsOnly.match(/.{1,2}/g)?.join('-') || digitsOnly;
+        e.target.value = formatted;
+    } else {
+        // User typed hyphen manually - preserve format
+        parts = value.split('-');
+        let result = '';
+        let digitCount = 0;
+        
+        for (let i = 0; i < parts.length; i++) {
+            let part = parts[i];
+            
+            // Limit first part to 2 digits
+            if (i === 0) {
+                part = part.substring(0, 2);
+            }
+            // Limit last part to 2 digits
+            else if (i === 2) {
+                part = part.substring(0, 2);
+            }
+            
+            // Check total digit count
+            if (digitCount + part.length > 6) {
+                part = part.substring(0, 6 - digitCount);
+            }
+            
+            digitCount += part.length;
+            result += part;
+            
+            if (i < parts.length - 1) {
+                result += '-';
+            }
+        }
+        
+        // Auto-add hyphen if middle part has 2 digits
+        if (parts.length === 2 && parts[1].length === 2) {
+            result += '-';
+        }
+        
+        e.target.value = result;
+    }
+});
+
+</script>
   <script src="./script.js"></script>
 </body>
 

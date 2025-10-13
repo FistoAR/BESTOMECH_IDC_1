@@ -289,15 +289,6 @@
                 <div class="polyv-section">
                     <div class="polyv-section-title">Enter Details</div>
                     <div class="polyv-input-row">
-                      <div class="polyv-form-group">
-      <label>Type</label>
-      <select id="polyvTypeInput">
-        <option value="">Select Type</option>
-        <option value="J">J</option>
-        <option value="K">K</option>
-        <option value="L">L</option>
-      </select>
-    </div>
                         <div class="polyv-form-group">
                             <label>De (mm)</label>
                             <input type="number" id="polyvDeMm" placeholder="e.g., 20">
@@ -513,7 +504,7 @@
             <img src="../global assets/Images/Poly_v_pulley/Page_11.png" class="w-[93%]  absolute top-[6%] left-[3%]"/>
           </div>
             <!-- <button class="polyv-open-btn" onclick="openPolyvPopup()">Open Poly-V Pulley Lookup</button> -->
-            <button class="open-btn" style="right: 55%;
+            <button class="open-btn" style="right: 20%;
     position: absolute;
     top: 36%;" onclick="openPolyvPopup()">Click</button>
           <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
@@ -1713,105 +1704,108 @@ document.getElementById('pulleyDesignation').addEventListener('input', function(
 
 // Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
-   Papa.parse("../Poly-V-Pulleys Catalogue (1) exel(Base data).csv", {
-  download: true,
-  header: false,
-  skipEmptyLines: false,
-  complete: function (results) {
-    let currentType = '';
-    let currentDe = '';
+    Papa.parse("../Poly-V-Pulleys Catalogue (1) exel(Base data).csv", {
+        download: true,
+        header: false, // Changed to false to handle manually
+        skipEmptyLines: false, // Don't skip empty lines as we need to process them
+        complete: function(results) {
+            // Process all rows
+            let currentDe = ''; // Track the current De value
+            let headerFound = false;
+            
+            polyvPulleyData = results.data
+                .map((row, index) => {
+                    // Convert row to array if it's not already
+                    const values = Array.isArray(row) ? row : Object.values(row);
+                    
+                    // Clean up values
+                    const cleanValues = values.map(v => (v || '').toString().trim());
+                    
+                    // Skip header rows and empty rows
+                    if (index < 5) return null; // Skip the first few header rows
+                    if (cleanValues.every(v => v === '')) return null; // Skip completely empty rows
+                    if (cleanValues[0] === 'De [mm]' || cleanValues[1] === 'Number of grooves') return null;
+                    
+                    // If first column has a value, update currentDe
+                    if (cleanValues[0] && cleanValues[0] !== '') {
+                        currentDe = cleanValues[0];
+                    }
+                    
+                    // If we don't have grooves data, skip
+                    if (!cleanValues[1]) return null;
+                    
+                    // Create data object
+                    return {
+    de: currentDe,
+    grooves: cleanValues[1],   // correct grooves column
+    type: cleanValues[2] || '',
+    serSit: cleanValues[3] || '-',
+    L: cleanValues[4] || '',
+    z: cleanValues[5] || '',
+    m: cleanValues[6] || '',
+    u: cleanValues[7] || '',
+    d: cleanValues[8] || '',
+    w: cleanValues[9] || ''
+};
 
-    polyvPulleyData = results.data
-      .map((row, index) => {
-        const values = Array.isArray(row) ? row : Object.values(row);
-        const cleanValues = values.map(v => (v || '').toString().trim());
-
-        if (index < 5) return null;
-        if (cleanValues.every(v => v === '')) return null;
-        if (cleanValues[0] === 'De [mm]' || cleanValues[1] === 'Number of grooves') return null;
-
-        // TYPE handling (J, K, L)
-        if (cleanValues[0] && ['J', 'K', 'L'].includes(cleanValues[0])) {
-          currentType = cleanValues[0];
+                })
+                .filter(row => row !== null && row.de !== ''); // Remove null entries and entries without De
+            
+            console.log("✅ Poly-V Pulley data loaded:", polyvPulleyData.length, "entries");
+            console.log("Sample entries:", polyvPulleyData.slice(0, 5));
+            
+            // Debug: Show unique De values
+            const uniqueDe = [...new Set(polyvPulleyData.map(item => item.de))];
+            console.log("Available De values:", uniqueDe);
+        },
+        error: function(error) {
+            console.error("Error loading CSV:", error);
+            showPolyvMessage('Error loading Poly-V Pulley data', 'polyv-error');
         }
-
-        // DE handling
-        if (cleanValues[1] && cleanValues[1] !== '') {
-          currentDe = cleanValues[1];
-        }
-
-        // Skip if no grooves
-        if (!cleanValues[2]) return null;
-
-        return {
-          type: currentType,
-          de: currentDe,
-          grooves: cleanValues[2],
-          serSit: cleanValues[4] || '-',
-          L: cleanValues[5] || '',
-          z: cleanValues[6] || '',
-          m: cleanValues[7] || '',
-          u: cleanValues[8] || '',
-          d: cleanValues[9] || '',
-          w: cleanValues[10] || ''
-        };
-      })
-      .filter(row => row && row.type && row.de);
-
-    console.log("✅ Poly-V Pulley data loaded:", polyvPulleyData.length);
-    console.log("Sample:", polyvPulleyData.slice(0, 5));
-  }
-});
-
+    });
 });
 
 function fetchPolyvData() {
-  hidePolyvMessage();
-
-  const type = document.getElementById('polyvTypeInput').value.trim();
-  const deMm = document.getElementById('polyvDeMm').value.trim();
-  const numGrooves = document.getElementById('polyvNumGrooves').value.trim();
-
-  if (!type || !deMm || !numGrooves) {
-    showPolyvMessage('Please fill in Type, De (mm), and Number of Grooves', 'polyv-error');
-    return;
-  }
-
-  console.log('Searching for:', { type, deMm, numGrooves });
-
-  const result = polyvPulleyData.find(
-    item =>
-      item.type.trim() === type &&
-      item.de.trim() === deMm &&
-      item.grooves.trim() === numGrooves
-  );
-
-  if (result) {
-    document.getElementById('polyvType').value = result.type;
-    document.getElementById('polyvSerSit').value = result.serSit;
-    document.getElementById('polyvLMm').value = result.L;
-    document.getElementById('polyvZMm').value = result.z;
-    document.getElementById('polyvMMm').value = result.m;
-    document.getElementById('polyvUMm').value = result.u;
-    document.getElementById('polyvDMm').value = result.d;
-    document.getElementById('polyvWMm').value = result.w;
-
-    showPolyvMessage('Data fetched successfully!', 'polyv-success');
-  } else {
-    showPolyvMessage('No matching data found. Please check your inputs.', 'polyv-error');
-
-    const availableForTypeDe = polyvPulleyData.filter(
-      item => item.type === type && item.de === deMm
-    );
-    if (availableForTypeDe.length > 0) {
-      console.log(
-        `Available grooves for ${type} ${deMm}:`,
-        availableForTypeDe.map(item => item.grooves)
-      );
-    } else {
-      console.log(`No entries found for ${type} ${deMm}`);
+    hidePolyvMessage();
+    
+    const deMm = document.getElementById('polyvDeMm').value.trim();
+    const numGrooves = document.getElementById('polyvNumGrooves').value.trim();
+    
+    if (!deMm || !numGrooves) {
+        showPolyvMessage('Please fill in both De (mm) and Number of Grooves', 'polyv-error');
+        return;
     }
-  }
+    
+    console.log('Searching for Poly-V:', { deMm, numGrooves });
+    
+    // Find matching data
+   const result = polyvPulleyData.find(item => 
+    item.de.trim() == deMm.trim() && item.grooves.trim() == numGrooves.trim()
+);
+
+    
+    if (result) {
+        document.getElementById('polyvType').value = result.type;
+        document.getElementById('polyvSerSit').value = result.serSit;
+        document.getElementById('polyvLMm').value = result.L;
+        document.getElementById('polyvZMm').value = result.z;
+        document.getElementById('polyvMMm').value = result.m;
+        document.getElementById('polyvUMm').value = result.u;
+        document.getElementById('polyvDMm').value = result.d;
+        document.getElementById('polyvWMm').value = result.w;
+        
+        showPolyvMessage('Data fetched successfully!', 'polyv-success');
+    } else {
+        showPolyvMessage('No matching data found. Please check your inputs.', 'polyv-error');
+        
+        // Debug: Show what's available for this De value
+        const availableForDe = polyvPulleyData.filter(item => item.de === deMm);
+        if (availableForDe.length > 0) {
+            console.log(`Available grooves for De ${deMm}:`, availableForDe.map(item => item.grooves));
+        } else {
+            console.log(`No entries found for De ${deMm}`);
+        }
+    }
 }
 
 function openPolyvPopup() {
