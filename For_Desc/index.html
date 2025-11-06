@@ -3,7 +3,7 @@
 
 <head>
   <title>Bestomech</title>
-
+   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Tailwind Css  -->
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -189,19 +189,19 @@
                     <div class="input-row">
                         <div class="form-group">
                             <label>Pulley Designation</label>
-                            <input type="text" id="pulleyDesignation" placeholder="e.g., 28-5-15">
+                            <input type="text" id="pulleyDesignation" placeholder="e.g., 32-5-15">
                         </div>
                         <div class="form-group">
                             <label>Pitch</label>
-                            <input type="number" id="pitch" placeholder="e.g., 5">
+                            <input type="number" id="pitch" placeholder="e.g., 5" data-maxlength="2">
                         </div>
                         <div class="form-group">
                             <label>Belt Width</label>
-                            <input type="number" id="beltWidth" placeholder="e.g., 15">
+                            <input type="number" id="beltWidth" placeholder="e.g., 15" data-maxlength="2">
                         </div>
                         <div class="form-group">
                             <label>No. Of Teeth</label>
-                            <input type="number" id="noOfTeeth" placeholder="e.g., 28">
+                            <input type="number" id="noOfTeeth" placeholder="e.g., 32" data-maxlength="3">
                         </div>
                     </div>
                     <button class="fetch-btn" onclick="fetchData()">Search</button>
@@ -276,8 +276,10 @@
         </div>
     </div>
 
+    <!-- <button class="open-btn" style="right: 20%;
+    position: absolute;
+    top: 36%;" onclick="openPopup()">Click</button> -->
     <!-- ------poly v pully popup-----  -->
-
 
      <div class="polyv-popup-overlay" id="polyvPopupOverlay">
         <div class="polyv-popup-container">
@@ -290,9 +292,9 @@
                     <div class="polyv-section-title">Enter Details</div>
                     <div class="polyv-input-row">
                       <div class="polyv-form-group">
-      <label>Type</label>
+      <label>Section</label>
       <select id="polyvTypeInput">
-        <option value="">Select Type</option>
+        <option value="">Select Section</option>
         <option value="J">J</option>
         <option value="K">K</option>
         <option value="L">L</option>
@@ -300,11 +302,11 @@
     </div>
                         <div class="polyv-form-group">
                             <label>De (mm)</label>
-                            <input type="number" id="polyvDeMm" placeholder="e.g., 20">
+                            <input type="number" id="polyvDeMm" placeholder="e.g., 20" data-maxlength="3">
                         </div>
                         <div class="polyv-form-group">
                             <label>Number of Grooves</label>
-                            <input type="number" id="polyvNumGrooves" placeholder="e.g., 4">
+                            <input type="number" id="polyvNumGrooves" placeholder="e.g., 4" data-maxlength="2">
                         </div>
                     </div>
                     <button class="polyv-fetch-btn" onclick="fetchPolyvData()">Fetch</button>
@@ -356,8 +358,75 @@
         </div>
     </div>
 
+     <!-- <button class="open-btn" style="right: 55%;
+    position: absolute;
+    top: 36%;" onclick="openPolyvPopup()">Click</button> -->
 
+<!-- Diverter Wheel Popup -->
+<div class="diverter-popup-overlay" id="diverterPopupOverlay">
+    <div class="diverter-popup-container">
+        <div class="diverter-popup-header">
+            <h2>Diverter Wheel</h2>
+            <button class="diverter-close-btn" onclick="closeDiverterPopup()">&times;</button>
+        </div>
+        <div class="diverter-popup-body">
+            <div class="diverter-section">
+                <div class="diverter-section-title">Enter Details</div>
+                <div class="diverter-input-row">
+                    <div class="diverter-form-group">
+                        <label>Dia (mm)</label>
+                        <input type="number" id="diverterDia" placeholder="e.g., 160" data-maxlength="3">
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Width (mm)</label>
+                        <input type="number" id="diverterWidth" placeholder="e.g., 70" data-maxlength="3">
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>No.Of Grooves</label>
+                        <input type="number" id="diverterGrooves" placeholder="e.g., 5" data-maxlength="2">
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Rope Diameter (mm)</label>
+                        <input type="number" id="diverterRopeDia" placeholder="e.g., 6" data-maxlength="2">
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Pitch (mm)</label>
+                        <input type="number" id="diverterPitch" placeholder="e.g., 12" data-maxlength="2">
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Bearing (Make-SKF/FAG)</label>
+                        <input type="text" id="diverterBearing" placeholder="e.g., 6008ZZ" maxlength="6">
+                    </div>
+                </div>
+                <button class="diverter-fetch-btn" onclick="fetchDiverterData()">Fetch</button>
+                <div class="diverter-message" id="diverterMessage"></div>
+            </div>
 
+            <div class="diverter-section">
+                <div class="diverter-section-title">Fetched Results</div>
+                <div class="diverter-form-grid">
+                    <div class="diverter-form-group">
+                        <label>Item Code</label>
+                        <input type="text" id="diverterItemCode" disabled>
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Material</label>
+                        <input type="text" id="diverterMaterial" disabled>
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Shaft Diameter (mm)</label>
+                        <input type="text" id="diverterShaftDia" disabled>
+                    </div>
+                    <div class="diverter-form-group">
+                        <label>Rated Load (kg)</label>
+                        <input type="text" id="diverterRatedLoad" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <button class="diverter-open-btn" style="right: 53%; position: absolute; top: 35%;" onclick="openDiverterPopup()">Click</button> -->
 
       <div id="flipbook" class="ui-flipbook">
 
@@ -365,28 +434,14 @@
 
 
 
-
-
-  <!-- =====================================================page want to replace================================================================= -->
-    
-
-
-
-
-
-
- <!-- =====================================================page end================================================================= -->
-
-
-
-
-
-
-
-
-
-
-
+    <!-- <div class="page">
+          <div class="topsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+          <div class="midsec">
+            <img src="../global assets/Images_new/Page_4.png" class="w-[50%] h-[50%] absolute top-[0%] left-[0%]"/>
+          </div>
+          <img src="../global assets/Images_new/01.svg" class="absolute  bottom-[1%] left-[50%] w-[5%] " style="transform: translate(-50%, 0%);"/>
+          <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
+        </div> -->
 
 
 
@@ -1089,7 +1144,7 @@
           <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/left.webp" alt=""></div>
         </div>
 <!-- =====================================================page 74 end================================================================= -->
- v
+
   <!-- =====================================================page 75 Start================================================================= -->
            <div class="page">
           <div class="topsec"><img src="../global assets/Images/Top&Bottom/right1.webp" alt=""></div>
@@ -1114,6 +1169,8 @@
           <div class="midsec">
             <img src="../global assets/Images/Diverter_Wheel/Page_77.png" class="w-[90%]  absolute top-[6%] left-[5%]"/>
           </div>
+          <!-- Diverter Wheel Button -->
+<button class="diverter-open-btn" style="right: 53%; position: absolute; top: 35%;" onclick="openDiverterPopup()">Click</button>
           <div class="bottomsec"><img src="../global assets/Images/Top&Bottom/right2.webp" alt=""></div>
     </div>
 <!-- =====================================================page 77 end================================================================= -->
@@ -1470,7 +1527,7 @@
 
 // Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
-  Papa.parse("../TIMING PULLEY.csv", {
+  Papa.parse("../Timing_Pulley.csv", {
     download: true,
     header: true,
     skipEmptyLines: true,
@@ -1713,7 +1770,7 @@ document.getElementById('pulleyDesignation').addEventListener('input', function(
 
 // Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
-   Papa.parse("../Poly-V-Pulleys Catalogue (1) exel(Base data).csv", {
+   Papa.parse("../Poly_V_Pulleys.csv", {
   download: true,
   header: false,
   skipEmptyLines: false,
@@ -1721,43 +1778,43 @@ window.addEventListener('DOMContentLoaded', () => {
     let currentType = '';
     let currentDe = '';
 
-    polyvPulleyData = results.data
-      .map((row, index) => {
-        const values = Array.isArray(row) ? row : Object.values(row);
-        const cleanValues = values.map(v => (v || '').toString().trim());
+   polyvPulleyData = results.data
+  .map((row, index) => {
+    const values = Array.isArray(row) ? row : Object.values(row);
+    const cleanValues = values.map(v => (v || '').toString().trim());
 
-        if (index < 5) return null;
-        if (cleanValues.every(v => v === '')) return null;
-        if (cleanValues[0] === 'De [mm]' || cleanValues[1] === 'Number of grooves') return null;
+    if (index < 5) return null;
+    if (cleanValues.every(v => v === '')) return null;
+    if (cleanValues[0] === 'De [mm]' || cleanValues[1] === 'Number of grooves') return null;
 
-        // TYPE handling (J, K, L)
-        if (cleanValues[0] && ['J', 'K', 'L'].includes(cleanValues[0])) {
-          currentType = cleanValues[0];
-        }
+    // SECTION handling (J, K, L)
+    if (cleanValues[0] && ['J', 'K', 'L'].includes(cleanValues[0])) {
+      currentType = cleanValues[0]; // This is actually the SECTION
+    }
 
-        // DE handling
-        if (cleanValues[1] && cleanValues[1] !== '') {
-          currentDe = cleanValues[1];
-        }
+    // DE handling
+    if (cleanValues[1] && cleanValues[1] !== '') {
+      currentDe = cleanValues[1];
+    }
 
-        // Skip if no grooves
-        if (!cleanValues[2]) return null;
+    // Skip if no grooves
+    if (!cleanValues[2]) return null;
 
-        return {
-          type: currentType,
-          de: currentDe,
-          grooves: cleanValues[2],
-          serSit: cleanValues[4] || '-',
-          L: cleanValues[5] || '',
-          z: cleanValues[6] || '',
-          m: cleanValues[7] || '',
-          u: cleanValues[8] || '',
-          d: cleanValues[9] || '',
-          w: cleanValues[10] || ''
-        };
-      })
-      .filter(row => row && row.type && row.de);
-
+    return {
+      section: currentType,  // Changed from 'type' to 'section'
+      de: currentDe,
+      grooves: cleanValues[2],
+      type: cleanValues[3] || '-',  // ADD THIS - This is the actual Type column
+      serSit: cleanValues[4] || '-',
+      L: cleanValues[5] || '',
+      z: cleanValues[6] || '',
+      m: cleanValues[7] || '',
+      u: cleanValues[8] || '',
+      d: cleanValues[9] || '',
+      w: cleanValues[10] || ''
+    };
+  })
+  .filter(row => row && row.section && row.de);
     console.log("✅ Poly-V Pulley data loaded:", polyvPulleyData.length);
     console.log("Sample:", polyvPulleyData.slice(0, 5));
   }
@@ -1768,26 +1825,26 @@ window.addEventListener('DOMContentLoaded', () => {
 function fetchPolyvData() {
   hidePolyvMessage();
 
-  const type = document.getElementById('polyvTypeInput').value.trim();
+  const section = document.getElementById('polyvTypeInput').value.trim();
   const deMm = document.getElementById('polyvDeMm').value.trim();
   const numGrooves = document.getElementById('polyvNumGrooves').value.trim();
 
-  if (!type || !deMm || !numGrooves) {
-    showPolyvMessage('Please fill in Type, De (mm), and Number of Grooves', 'polyv-error');
+  if (!section || !deMm || !numGrooves) {
+    showPolyvMessage('Please fill in Section, De (mm), and Number of Grooves', 'polyv-error');
     return;
   }
 
-  console.log('Searching for:', { type, deMm, numGrooves });
+  console.log('Searching for:', { section, deMm, numGrooves });
 
   const result = polyvPulleyData.find(
     item =>
-      item.type.trim() === type &&
+      item.section.trim().toUpperCase() === section.toUpperCase() &&
       item.de.trim() === deMm &&
       item.grooves.trim() === numGrooves
   );
 
   if (result) {
-    document.getElementById('polyvType').value = result.type;
+    document.getElementById('polyvType').value = result.type;  // Now shows actual Type from CSV
     document.getElementById('polyvSerSit').value = result.serSit;
     document.getElementById('polyvLMm').value = result.L;
     document.getElementById('polyvZMm').value = result.z;
@@ -1800,20 +1857,19 @@ function fetchPolyvData() {
   } else {
     showPolyvMessage('No matching data found. Please check your inputs.', 'polyv-error');
 
-    const availableForTypeDe = polyvPulleyData.filter(
-      item => item.type === type && item.de === deMm
+    const availableForSectionDe = polyvPulleyData.filter(
+      item => item.section === section && item.de === deMm
     );
-    if (availableForTypeDe.length > 0) {
+    if (availableForSectionDe.length > 0) {
       console.log(
-        `Available grooves for ${type} ${deMm}:`,
-        availableForTypeDe.map(item => item.grooves)
+        `Available grooves for ${section} ${deMm}:`,
+        availableForSectionDe.map(item => item.grooves)
       );
     } else {
-      console.log(`No entries found for ${type} ${deMm}`);
+      console.log(`No entries found for ${section} ${deMm}`);
     }
   }
 }
-
 function openPolyvPopup() {
     document.getElementById('polyvPopupOverlay').classList.add('polyv-active');
 }
@@ -1870,6 +1926,255 @@ document.addEventListener('DOMContentLoaded', () => {
        </script>
 
     <!-- ---------poly v pully popup fetch end------  -->
+
+<!-- ---------diverter Wheel popup fetch start-----  -->
+
+    <script>
+    let diverterWheelData = [];
+
+// Load Diverter Wheel CSV file automatically when page loads
+window.addEventListener('DOMContentLoaded', () => {
+    Papa.parse("../Diverter_Wheel.csv", {
+        download: true,
+        header: false,
+        skipEmptyLines: false,
+        encoding: "UTF-8",
+        complete: function (results) {
+            diverterWheelData = results.data
+                .map((row, index) => {
+                    const values = Array.isArray(row) ? row : Object.values(row);
+                    const cleanValues = values.map(v => (v || '').toString().trim());
+
+                    // Skip header rows and empty rows
+                    if (index < 3) return null;
+                    if (cleanValues.every(v => v === '')) return null;
+                    if (cleanValues[0] === 'ITEM CODE' || cleanValues[1] === 'DIA') return null;
+
+                    // Skip rows that don't have numeric DIA
+                    if (!cleanValues[1] || isNaN(cleanValues[1])) return null;
+
+                    // Clean shaft diameter data
+                    let shaftDia = cleanValues[8] || '-';
+                    if (shaftDia && shaftDia !== '-') {
+                        shaftDia = shaftDia.replace(/[�?]/g, '').trim();
+                        shaftDia = shaftDia.replace(/[ØøΦφ]/g, '').trim();
+                        if (shaftDia && shaftDia !== '') {
+                            shaftDia = 'Ø' + shaftDia;
+                        }
+                    }
+
+                    return {
+                        itemCode: cleanValues[0] || '-',
+                        dia: cleanValues[1] || '',
+                        width: cleanValues[2] || '',
+                        grooves: cleanValues[3] || '',
+                        ropeDia: cleanValues[4] || '',
+                        pitch: cleanValues[5] || '',
+                        bearing: cleanValues[6] || '-',
+                        material: cleanValues[7] || '-',
+                        shaftDia: shaftDia,
+                        ratedLoad: cleanValues[9] || '-'
+                    };
+                })
+                .filter(row => row && row.dia);
+
+            console.log("✅ Diverter Wheel data loaded:", diverterWheelData.length);
+            console.log("Sample:", diverterWheelData.slice(0, 5));
+        }
+    });
+});
+
+function fetchDiverterData() {
+    hideDiverterMessage();
+
+    const dia = document.getElementById('diverterDia').value.trim();
+    const width = document.getElementById('diverterWidth').value.trim();
+    const grooves = document.getElementById('diverterGrooves').value.trim();
+    const ropeDia = document.getElementById('diverterRopeDia').value.trim();
+    const pitch = document.getElementById('diverterPitch').value.trim();
+    const bearing = document.getElementById('diverterBearing').value.trim();
+
+    if (!dia || !width || !grooves || !ropeDia || !pitch || !bearing) {
+        showDiverterMessage('Please fill in all input fields', 'diverter-error');
+        return;
+    }
+
+    console.log('Searching for:', { dia, width, grooves, ropeDia, pitch, bearing });
+
+    const result = diverterWheelData.find(
+        item =>
+            item.dia.trim() === dia &&
+            item.width.trim() === width &&
+            item.grooves.trim() === grooves &&
+            item.ropeDia.trim() === ropeDia &&
+            item.pitch.trim() === pitch &&
+            item.bearing.trim().toUpperCase() === bearing.toUpperCase()
+    );
+
+    if (result) {
+        document.getElementById('diverterItemCode').value = result.itemCode;
+        document.getElementById('diverterMaterial').value = result.material;
+        document.getElementById('diverterShaftDia').value = result.shaftDia;
+        document.getElementById('diverterRatedLoad').value = result.ratedLoad;
+
+        showDiverterMessage('Data fetched successfully!', 'diverter-success');
+    } else {
+        showDiverterMessage('No matching data found. Please check your inputs.', 'diverter-error');
+
+        const availableForDiaWidth = diverterWheelData.filter(
+            item => item.dia === dia && item.width === width
+        );
+        if (availableForDiaWidth.length > 0) {
+            console.log(
+                `Available options for DIA ${dia} and Width ${width}:`,
+                availableForDiaWidth.map(item => ({
+                    grooves: item.grooves,
+                    ropeDia: item.ropeDia,
+                    pitch: item.pitch,
+                    bearing: item.bearing
+                }))
+            );
+        } else {
+            console.log(`No entries found for DIA ${dia} and Width ${width}`);
+        }
+    }
+}
+
+function openDiverterPopup() {
+    document.getElementById('diverterPopupOverlay').classList.add('diverter-active');
+}
+
+function closeDiverterPopup() {
+    document.getElementById('diverterPopupOverlay').classList.remove('diverter-active');
+    clearDiverterForm();
+}
+
+function clearDiverterForm() {
+    document.getElementById('diverterDia').value = '';
+    document.getElementById('diverterWidth').value = '';
+    document.getElementById('diverterGrooves').value = '';
+    document.getElementById('diverterRopeDia').value = '';
+    document.getElementById('diverterPitch').value = '';
+    document.getElementById('diverterBearing').value = '';
+    clearDiverterResults();
+    hideDiverterMessage();
+}
+
+function clearDiverterResults() {
+    document.getElementById('diverterItemCode').value = '';
+    document.getElementById('diverterMaterial').value = '';
+    document.getElementById('diverterShaftDia').value = '';
+    document.getElementById('diverterRatedLoad').value = '';
+}
+
+function showDiverterMessage(text, type) {
+    const msg = document.getElementById('diverterMessage');
+    msg.textContent = text;
+    msg.className = `diverter-message ${type}`;
+    msg.style.display = 'block';
+}
+
+function hideDiverterMessage() {
+    const msg = document.getElementById('diverterMessage');
+    if (msg) {
+        msg.style.display = 'none';
+    }
+}
+
+// Event listener for overlay click
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('diverterPopupOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDiverterPopup();
+            }
+        });
+    }
+});
+    </script>
+<!-- accept 4 digits number and ZZ only js code  -->
+   <script>
+  const bearingInput = document.getElementById('diverterBearing');
+
+  bearingInput.addEventListener('input', function (e) {
+    const raw = e.target.value.toUpperCase(); // uppercase immediately
+    let out = '';
+    let digitCount = 0;
+    let zCount = 0;
+
+    for (let i = 0; i < raw.length && out.length < 6; i++) {
+      const ch = raw[i];
+
+      // allow digits only in the first 4 slots
+      if (out.length < 4) {
+        if (/\d/.test(ch)) {
+          out += ch;
+          digitCount++;
+        } else {
+          // ignore non-digit until first 4 digits are filled
+          // this prevents letters being entered before the 4 digits
+          continue;
+        }
+      } else {
+        // positions 5-6: allow only 'Z' (up to 2)
+        if (ch === 'Z' && zCount < 2) {
+          out += 'Z';
+          zCount++;
+        } else {
+          // ignore anything else after the 4 digits
+          continue;
+        }
+      }
+    }
+
+    // If user pasted e.g. "6008zz123", the above will trim to "6008ZZ"
+    e.target.value = out;
+  });
+
+  // Optional: prevent typing disallowed keys (nice UX) but still rely on input handler above.
+  bearingInput.addEventListener('keypress', function (e) {
+    const key = e.key;
+    // allow control keys
+    if (key.length > 1) return;
+    const pos = e.target.selectionStart;
+
+    // If caret is before 4th position, only allow digits
+    if (pos < 4) {
+      if (!/[0-9]/.test(key)) e.preventDefault();
+    } else {
+      // positions 4 or 5 (0-indexed) — allow only z/Z
+      if (!/[zZ]/.test(key)) e.preventDefault();
+    }
+  });
+</script>
+
+<!-- maximum limit for input number feild  -->
+
+
+<script>
+  // Apply to all number inputs with a data-maxlength attribute
+  document.querySelectorAll('input[type="number"][data-maxlength]').forEach(input => {
+    // Always ensure minimum 0
+    input.min = 0;
+
+    input.addEventListener('input', function () {
+      const max = parseInt(this.dataset.maxlength);
+      
+      // If user types more digits than allowed
+      if (this.value.length > max) {
+        this.value = this.value.slice(0, max);
+      }
+
+      // Prevent negative or invalid input
+      if (this.value < 0) {
+        this.value = '';
+      }
+    });
+  });
+</script>
+
+    <!-- ---------diverter Wheel popup fetch end------  -->
 </body>
 
 
