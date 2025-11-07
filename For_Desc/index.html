@@ -187,10 +187,10 @@
                 <div class="section">
                     <div class="section-title">Enter Details</div>
                     <div class="input-row">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Pulley Designation</label>
                             <input type="text" id="pulleyDesignation" placeholder="e.g., 32-5-15">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label>Pitch</label>
                             <input type="number" id="pitch" placeholder="e.g., 5" data-maxlength="2">
@@ -218,6 +218,10 @@
 
     
                     <div class="form-grid">
+                      <div class="form-group">
+                            <label>Pulley Designation</label>
+                            <input type="text" id="pulleyDesignation" disabled>
+                        </div>
                         <div class="form-group">
                             <label>Pulley Type</label>
                             <input type="text" id="pulleyType" disabled>
@@ -308,6 +312,10 @@
                             <label>Number of Grooves</label>
                             <input type="number" id="polyvNumGrooves" placeholder="e.g., 4" data-maxlength="2">
                         </div>
+                        <div class="polyv-form-group">
+                            <label>Type</label>
+                            <input type="number" id="polyvType" placeholder="e.g., 1" data-maxlength="2">
+                        </div>
                     </div>
                     <button class="polyv-fetch-btn" onclick="fetchPolyvData()">Fetch</button>
                     <div class="polyv-message" id="polyvMessage"></div>
@@ -316,10 +324,10 @@
                 <div class="polyv-section">
                     <div class="polyv-section-title">Fetched Results</div>
                     <div class="polyv-form-grid">
-                        <div class="polyv-form-group">
+                        <!-- <div class="polyv-form-group">
                             <label>Type</label>
                             <input type="text" id="polyvType" disabled>
-                        </div>
+                        </div> -->
                         <div class="polyv-form-group">
                             <label>SER-SIT?</label>
                             <input type="text" id="polyvSerSit" disabled>
@@ -1528,12 +1536,74 @@
 // Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
   Papa.parse("../Timing_Pulley.csv", {
-    download: true,
-    header: true,
-    skipEmptyLines: true,
-    transformHeader: function(header) {
-      return header.trim();
-    },
+    // download: true,
+    // header: true,
+    // skipEmptyLines: true,
+    // transformHeader: function(header) {
+    //   return header.trim();
+    // },
+      download: true,
+  header: true,
+  skipEmptyLines: true,
+  // dynamicTyping: false,           // ← ADD THIS
+  // transformHeader: function(header) {
+  //   return header.trim();
+  // },
+  // transform: function(value, field) {  // ← ADD THIS ENTIRE FUNCTION
+  //   return String(value).trim();
+  // },
+    dynamicTyping: false, // keep everything as string
+  transformHeader: function(header) {
+    return header.trim();
+  },
+transform: function (value, field) {
+  if (value === undefined || value === null) return "";
+
+  value = String(value).trim();
+
+  // --- 0️⃣ Fix Excel replacing 3/4 → 03-Apr ---
+  // If cell looks like "03-Apr" or "Apr-03", revert to original fraction guess
+  const shortMonthPattern = /^(\d{1,2})[-/ ]?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$/i;
+  if (shortMonthPattern.test(value)) {
+    const num = value.match(/^(\d{1,2})/)[1];
+    const month = value.match(/[A-Za-z]{3}/)[0];
+    const monthMap = {
+      Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
+      Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12
+    };
+    const m = monthMap[month.charAt(0).toUpperCase() + month.slice(1).toLowerCase()];
+    // Convert 03-Apr → 3/4
+    return `${parseInt(num)}/${m}`;
+  }
+
+  // --- 1️⃣ Fix Excel-style full date formats like "28-May-15" or "28/05/2015" ---
+  const datePattern = /^(\d{1,2})[-/](\d{1,2}|\w{3,})[-/](\d{2,4})$/i;
+  if (datePattern.test(value)) {
+    const parts = value.split(/[-/]/);
+    let d = parts[0], m = parts[1], y = parts[2];
+    const monthMap = {
+      jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
+      jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12
+    };
+    if (isNaN(m)) m = monthMap[m.slice(0, 3).toLowerCase()] || m;
+    y = y.length === 4 ? y.slice(-2) : y;
+    return `${parseInt(d)}-${parseInt(m)}-${y}`;
+  }
+
+  // --- 2️⃣ Handle Excel numeric serials ---
+  if (!isNaN(value) && Number(value) > 20000 && Number(value) < 50000) {
+    const base = new Date(1899, 11, 30);
+    base.setDate(base.getDate() + Number(value));
+    const d = base.getDate();
+    const m = base.getMonth() + 1;
+    const y = String(base.getFullYear()).slice(-2);
+    return `${d}-${m}-${y}`;
+  }
+
+  // --- 3️⃣ Otherwise return as-is ---
+  return value;
+},
+
     complete: function(results) {
       let currentTitle = '';
       
@@ -1596,20 +1666,20 @@ window.addEventListener('DOMContentLoaded', () => {
 function fetchData() {
   hideMessage();
   
-  const pulleyDesignation = document.getElementById('pulleyDesignation').value.trim();
+  // const pulleyDesignation = document.getElementById('pulleyDesignation').value.trim();
   const pitch = document.getElementById('pitch').value.trim();
   const beltWidth = document.getElementById('beltWidth').value.trim();
   const noOfTeeth = document.getElementById('noOfTeeth').value.trim();
 
-  if (!pulleyDesignation || !pitch || !beltWidth || !noOfTeeth) {
+  if ( !pitch || !beltWidth || !noOfTeeth) {
     showMessage('Please fill in all input fields', 'error');
     return;
   }
 
-  console.log('Searching for:', { pulleyDesignation, pitch, beltWidth, noOfTeeth });
+  console.log('Searching for:', {  pitch, beltWidth, noOfTeeth });
 
   const result = pulleyData.find(item => 
-    item.pulleyDesignation === pulleyDesignation &&
+    // item.pulleyDesignation === pulleyDesignation &&
     item.pitch === pitch &&
     item.beltWidth === beltWidth &&
     item.noOfTeeth === noOfTeeth
@@ -1618,7 +1688,7 @@ function fetchData() {
   if (result) {
     // Display section title
     document.getElementById('sectionTitle').value = result.sectionTitle;
-    
+    document.getElementById('pulleyDesignation').value = result.pulleyDesignation;
     document.getElementById('pulleyType').value = result.pulleyType;
     document.getElementById('bushNo').value = result.bushNo;
     document.getElementById('maxBoreMetric').value = result.maxBoreMetric;
@@ -1770,7 +1840,7 @@ document.getElementById('pulleyDesignation').addEventListener('input', function(
 
 // Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
-   Papa.parse("../Poly_V_Pulleys.csv", {
+   Papa.parse("../Poly_V_Pulleys.xlsx.csv", {
   download: true,
   header: false,
   skipEmptyLines: false,
@@ -1782,37 +1852,40 @@ window.addEventListener('DOMContentLoaded', () => {
   .map((row, index) => {
     const values = Array.isArray(row) ? row : Object.values(row);
     const cleanValues = values.map(v => (v || '').toString().trim());
-
-    if (index < 5) return null;
-    if (cleanValues.every(v => v === '')) return null;
-    if (cleanValues[0] === 'De [mm]' || cleanValues[1] === 'Number of grooves') return null;
-
+if (index < 2) return null;  // Skip first 2 rows only
+if (cleanValues.every(v => v === '')) return null;
+if (cleanValues[2] === '' && cleanValues[2] === 'Number of grooves') return null;
     // SECTION handling (J, K, L)
-    if (cleanValues[0] && ['J', 'K', 'L'].includes(cleanValues[0])) {
-      currentType = cleanValues[0]; // This is actually the SECTION
-    }
-
+    // if (cleanValues[0] && ['J', 'K', 'L'].includes(cleanValues[0])) {
+    //   currentType = cleanValues[0]; // This is actually the SECTION
+    // }
+if (cleanValues[0] === 'J' || cleanValues[0] === 'K' || cleanValues[0] === 'L') {
+  currentType = cleanValues[0];
+}
     // DE handling
-    if (cleanValues[1] && cleanValues[1] !== '') {
-      currentDe = cleanValues[1];
-    }
+    // if (cleanValues[1] && cleanValues[1] !== '') {
+    //   currentDe = cleanValues[1];
+    // }
+    if (cleanValues[1] && cleanValues[1] !== '' && cleanValues[1] !== 'De [mm]') {
+  currentDe = cleanValues[1];
+}
 
     // Skip if no grooves
     if (!cleanValues[2]) return null;
 
-    return {
-      section: currentType,  // Changed from 'type' to 'section'
-      de: currentDe,
-      grooves: cleanValues[2],
-      type: cleanValues[3] || '-',  // ADD THIS - This is the actual Type column
-      serSit: cleanValues[4] || '-',
-      L: cleanValues[5] || '',
-      z: cleanValues[6] || '',
-      m: cleanValues[7] || '',
-      u: cleanValues[8] || '',
-      d: cleanValues[9] || '',
-      w: cleanValues[10] || ''
-    };
+  return {
+  section: currentType,           // Column A (carried forward)
+  de: currentDe,                   // Column B (De [mm])
+  grooves: cleanValues[2],         // Column C (Number of grooves)
+  type: cleanValues[3] || '-',     // Column D (Type)
+  serSit: cleanValues[4] || '-',   // Column E (SER-SIT)
+  L: cleanValues[5] || '',         // Column F (L [mm])
+  z: cleanValues[6] || '',         // Column G (Z [mm])
+  m: cleanValues[7] || '',         // Column H (M [mm])
+  u: cleanValues[8] || '',         // Column I (U [mm])
+  d: cleanValues[9] || '',         // Column J (d [mm])
+  w: cleanValues[10] || ''         // Column K (W [mm])
+};
   })
   .filter(row => row && row.section && row.de);
     console.log("✅ Poly-V Pulley data loaded:", polyvPulleyData.length);
@@ -1828,23 +1901,24 @@ function fetchPolyvData() {
   const section = document.getElementById('polyvTypeInput').value.trim();
   const deMm = document.getElementById('polyvDeMm').value.trim();
   const numGrooves = document.getElementById('polyvNumGrooves').value.trim();
-
-  if (!section || !deMm || !numGrooves) {
+  const type = document.getElementById('polyvType').value.trim();
+  if (!section || !deMm || !numGrooves || !type) {
     showPolyvMessage('Please fill in Section, De (mm), and Number of Grooves', 'polyv-error');
     return;
   }
 
-  console.log('Searching for:', { section, deMm, numGrooves });
+  console.log('Searching for:', { section, deMm, numGrooves, type });
 
   const result = polyvPulleyData.find(
     item =>
       item.section.trim().toUpperCase() === section.toUpperCase() &&
       item.de.trim() === deMm &&
-      item.grooves.trim() === numGrooves
+      item.grooves.trim() === numGrooves &&
+      item.type.trim() === type
   );
 
   if (result) {
-    document.getElementById('polyvType').value = result.type;  // Now shows actual Type from CSV
+    // document.getElementById('polyvType').value = result.type;  // Now shows actual Type from CSV
     document.getElementById('polyvSerSit').value = result.serSit;
     document.getElementById('polyvLMm').value = result.L;
     document.getElementById('polyvZMm').value = result.z;
@@ -1882,12 +1956,13 @@ function closePolyvPopup() {
 function clearPolyvForm() {
     document.getElementById('polyvDeMm').value = '';
     document.getElementById('polyvNumGrooves').value = '';
+     document.getElementById('polyvType').value = '';
     clearPolyvResults();
     hidePolyvMessage();
 }
 
 function clearPolyvResults() {
-    document.getElementById('polyvType').value = '';
+    // document.getElementById('polyvType').value = '';
     document.getElementById('polyvSerSit').value = '';
     document.getElementById('polyvLMm').value = '';
     document.getElementById('polyvZMm').value = '';
