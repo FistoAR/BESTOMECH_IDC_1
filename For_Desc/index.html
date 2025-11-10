@@ -16,6 +16,9 @@
 <!-- papa parse for data fetch from excel -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
   <!-- Turn.js UI Kit -->
   <script type="text/javascript" src="assets/js/turn.min.js"></script>
 
@@ -191,24 +194,41 @@
                             <label>Pulley Designation</label>
                             <input type="text" id="pulleyDesignation" placeholder="e.g., 32-5-15">
                         </div> -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Pitch</label>
                             <input type="number" id="pitch" placeholder="e.g., 5" data-maxlength="2">
-                        </div>
+                        </div> -->
                         <div class="form-group">
+    <label>Pitch</label>
+    <input type="number" id="pitch" placeholder="e.g., 5" data-maxlength="2">
+    <div id="pitchMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+</div>
+
+<div class="form-group">
+    <label>Belt Width</label>
+    <input type="number" id="beltWidth" placeholder="e.g., 15" data-maxlength="2">
+    <div id="beltWidthMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+</div>
+
+<div class="form-group">
+    <label>No. Of Teeth</label>
+    <input type="number" id="noOfTeeth" placeholder="e.g., 32" data-maxlength="3">
+    <div id="noOfTeethMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+</div>
+                        <!-- <div class="form-group">
                             <label>Belt Width</label>
                             <input type="number" id="beltWidth" placeholder="e.g., 15" data-maxlength="2">
-                        </div>
-                        <div class="form-group">
+                        </div> -->
+                        <!-- <div class="form-group">
                             <label>No. Of Teeth</label>
                             <input type="number" id="noOfTeeth" placeholder="e.g., 32" data-maxlength="3">
-                        </div>
+                        </div> -->
                     </div>
                     <button class="fetch-btn" onclick="fetchData()">Search</button>
                     <div class="message" id="message"></div>
                 </div>
-
-                <div class="section">
+<div class="flex items-center justify-around">
+<div class="section w-[65%]">
                     <div class="section-title">Fetched Results</div>
 
                     <div class="form-group" style="grid-column: 1 / -1; margin-bottom: 15px;">
@@ -276,6 +296,13 @@
                         </div>
                     </div>
                 </div>
+                
+<!-- IMAGE DISPLAY SECTION (Replace your current div with this) -->
+<div class="w-[25%]   rounded-lg overflow-hidden flex items-center justify-center ">
+  <img id="pulleyImage" src="" alt="" class="w-full h-full object-contain p-4">
+</div>
+</div>
+                
             </div>
         </div>
     </div>
@@ -302,26 +329,35 @@
         <option value="J">J</option>
         <option value="K">K</option>
         <option value="L">L</option>
+      <div id="polyvSectionMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold; color: red;"></div>
+
       </select>
     </div>
                         <div class="polyv-form-group">
                             <label>De (mm)</label>
                             <input type="number" id="polyvDeMm" placeholder="e.g., 20" data-maxlength="3">
-                        </div>
+                              <div id="polyvDeMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold; color: red;"></div>
+
+                          </div>
                         <div class="polyv-form-group">
                             <label>Number of Grooves</label>
                             <input type="number" id="polyvNumGrooves" placeholder="e.g., 4" data-maxlength="2">
-                        </div>
+                              <div id="polyvGroovesMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold; color: red;"></div>
+
+                          </div>
                         <div class="polyv-form-group">
                             <label>Type</label>
                             <input type="number" id="polyvType" placeholder="e.g., 1" data-maxlength="2">
-                        </div>
+                              <div id="polyvTypeValidationMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold; color: red;"></div>
+
+                          </div>
                     </div>
                     <button class="polyv-fetch-btn" onclick="fetchPolyvData()">Fetch</button>
                     <div class="polyv-message" id="polyvMessage"></div>
                 </div>
+<div class="flex items-center justify-around">
 
-                <div class="polyv-section">
+    <div class="polyv-section w-[65%]">
                     <div class="polyv-section-title">Fetched Results</div>
                     <div class="polyv-form-grid">
                         <!-- <div class="polyv-form-group">
@@ -329,7 +365,7 @@
                             <input type="text" id="polyvType" disabled>
                         </div> -->
                         <div class="polyv-form-group">
-                            <label>SER-SIT?</label>
+                            <label>SER-SIT</label>
                             <input type="text" id="polyvSerSit" disabled>
                         </div>
                         <!-- <div class="polyv-form-group">
@@ -362,6 +398,13 @@
                         </div>
                     </div>
                 </div>
+
+
+ <div class="w-[25%]   rounded-lg overflow-hidden flex items-center justify-around">
+  <img id="Poly_v_pulley_Image" src="" alt="" class="w-full h-full object-contain p-4">
+</div>
+</div>
+              
             </div>
         </div>
     </div>
@@ -1527,7 +1570,7 @@
   <script type="text/javascript" src="script.js"></script>
 
 
-<!-- ---------timing pully popup fetch start------  -->
+<!-- ---------*************timing pully popup fetch start**************------  -->
 
 
 <script>
@@ -1543,7 +1586,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //   return header.trim();
     // },
       download: true,
-  header: true,
+  header: false,
   skipEmptyLines: true,
   // dynamicTyping: false,           // ← ADD THIS
   // transformHeader: function(header) {
@@ -1604,58 +1647,58 @@ transform: function (value, field) {
   return value;
 },
 
-    complete: function(results) {
-      let currentTitle = '';
-      
-      // Process all rows and capture section titles
-      pulleyData = results.data
-        .map(row => {
-          const firstCol = Object.values(row)[0]?.trim() || '';
-          
-          // Check if this row is a section title
-          if (firstCol.includes('PITCH') && firstCol.includes('PULLEY')) {
-            currentTitle = firstCol;
-            return null; // Skip this row in data
-          }
-          
-          // Skip header rows
-          if (firstCol === 'Pulley Designation' || firstCol === '') {
-            return null;
-          }
-          
-          // This is a data row
-          if (firstCol && !firstCol.includes('PITCH')) {
-            const values = Object.values(row);
-            
-            return {
-              sectionTitle: currentTitle, // Add section title to each data row
-              pulleyDesignation: values[0]?.trim() || '',
-              pitch: values[1]?.trim() || '',
-              beltWidth: values[2]?.trim() || '',
-              noOfTeeth: values[3]?.trim() || '',
-              pulleyType: values[4]?.trim() || '',
-              bushNo: values[5]?.trim() || '',
-              maxBoreMetric: values[6]?.trim() || '',
-              maxBoreInch: values[7]?.trim() || '',
-              pitchDia: values[8]?.trim() || '',
-              outsideDia: values[9]?.trim() || '',
-              a: values[10]?.trim() || '',
-              f: values[11]?.trim() || '',
-              j: values[12]?.trim() || '',
-              k: values[13]?.trim() || '',
-              l: values[14]?.trim() || '',
-              m: values[15]?.trim() || '',
-              n: values[16]?.trim() || ''
-            };
-          }
-          
-          return null;
-        })
-        .filter(row => row !== null); // Remove null entries
-      
-      console.log("✅ Pulley data loaded:", pulleyData);
-      console.log("Sample entry with title:", pulleyData[0]);
-    },
+complete: function(results) {
+  let currentTitle = '';
+  pulleyData = [];
+
+  results.data.forEach(row => {
+    const values = row.map(v => String(v || '').trim());
+    const firstCol = values[0];
+
+    // 1️⃣ Detect section titles (like "5MM PITCH HIGH TORQUE PULLEYS...")
+    if (
+      firstCol.toUpperCase().includes('PITCH') &&
+      firstCol.toUpperCase().includes('PULLEY') &&
+      !firstCol.toUpperCase().includes('DESIGNATION')
+    ) {
+      currentTitle = firstCol;
+      console.log("📘 Found section title:", currentTitle);
+      return; // skip this row
+    }
+
+    // 2️⃣ Skip empty or header rows
+    if (!firstCol || firstCol.toUpperCase().includes('PULLEY DESIGNATION')) {
+      return;
+    }
+
+    // 3️⃣ Capture valid data rows
+    if (/^\d+[-\d]+[-\d]+$/.test(firstCol)) {
+      pulleyData.push({
+        sectionTitle: currentTitle,
+        pulleyDesignation: values[0],
+        pitch: values[1],
+        beltWidth: values[2],
+        noOfTeeth: values[3],
+        pulleyType: values[4],
+        bushNo: values[5],
+        maxBoreMetric: values[6],
+        maxBoreInch: values[7],
+        pitchDia: values[8],
+        outsideDia: values[9],
+        a: values[10],
+        f: values[11],
+        j: values[12],
+        k: values[13],
+        l: values[14],
+        m: values[15],
+        n: values[16]
+      });
+    }
+  });
+
+  console.log("✅ Parsed Pulley Data:", pulleyData);
+},
+
     error: function(error) {
       console.error("Error loading CSV:", error);
       showMessage('Error loading pulley data', 'error');
@@ -1707,6 +1750,27 @@ function fetchData() {
   } else {
     showMessage('No matching data found. Please check your inputs.', 'error');
     console.log('Available data sample:', pulleyData.slice(0, 3));
+    document.getElementById('sectionTitle').value = '';
+    document.getElementById('pulleyDesignation').value = '';
+    document.getElementById('pulleyType').value = '';
+    document.getElementById('bushNo').value = '';
+    document.getElementById('maxBoreMetric').value = '';
+    document.getElementById('maxBoreInch').value = '';
+    document.getElementById('pitchDia').value = '';
+    document.getElementById('outsideDia').value = '';
+    document.getElementById('fieldA').value = '';
+    document.getElementById('fieldF').value = '';
+    document.getElementById('fieldJ').value = '';
+    document.getElementById('fieldK').value = '';
+    document.getElementById('fieldL').value = '';
+    document.getElementById('fieldM').value = '';
+    document.getElementById('fieldN').value = '';
+    
+    // Clear the image as well
+    const imageElement = document.getElementById('pulleyImage');
+    imageElement.src = '';
+    // imageElement.alt = 'Pulley Type Image';
+    imageElement.style.opacity = '0.5';
   }
 }
 
@@ -1830,9 +1894,169 @@ document.getElementById('pulleyDesignation').addEventListener('input', function(
 
 </script>
 
-<!-- ---------timing pully popup fetch end------  -->
 
-<!-- ---------poly v pully popup fetch start-----  -->
+
+<!-- Image fetching Code  -->
+<script>
+// Image mapping for pulley types
+const pulleyTypeImageMap = {
+  '1F': 'Type_1F',
+  '2F': 'Type_2F',
+  '4F': 'Type_4F',
+  '5': 'Type_5',
+  '6F': 'Type_6F',
+  '6': 'Type_6',
+  '7': 'Type_7',
+  '8F': 'Type_8F',
+  '8': 'Type_8',
+  '9F': 'Type_9F',
+  '9': 'Type_9',
+  '10': 'Type_10',
+  '11': 'Type_11'
+};
+
+// Function to load and display image based on pulley type
+function loadPulleyImage(pulleyType) {
+  const imageElement = document.getElementById('pulleyImage');
+  
+  if (!pulleyType || pulleyType.trim() === '-') {
+    // If no pulley type, show placeholder
+    imageElement.src = '';
+    imageElement.alt = 'No image available';
+    imageElement.style.opacity = '0.5';
+    return;
+  }
+
+  // Get the image filename from mapping
+  const imageFileName = pulleyTypeImageMap[pulleyType.trim()];
+  
+  if (!imageFileName) {
+    console.warn(`No image mapping found for pulley type: ${pulleyType}`);
+    imageElement.src = '';
+    imageElement.alt = 'Image not found';
+    return;
+  }
+
+  // Construct the image path (adjust path based on your folder structure)
+  const imagePath = `../global assets/Timing_Pulley_Type_Image/${imageFileName}.svg`;
+  
+  // Set the image source
+  imageElement.src = imagePath;
+  // imageElement.alt = `Pulley Type ${pulleyType}`;
+  imageElement.style.opacity = '1';
+  
+  console.log(`Loading image for pulley type: ${pulleyType}`);
+}
+
+// Hook into your existing fetchData function
+// Add this line at the END of your fetchData function (after showing success message)
+// Replace the existing fetchData function or add this modification:
+
+const originalFetchData = window.fetchData;
+
+window.fetchData = function() {
+  originalFetchData();
+  
+  // Get the pulley type that was just loaded
+  const pulleyType = document.getElementById('pulleyType').value;
+  
+  // Load the corresponding image
+  if (pulleyType) {
+    loadPulleyImage(pulleyType);
+  }
+};
+
+// Also clear image when form is cleared
+const originalClearForm = window.clearForm;
+
+window.clearForm = function() {
+  originalClearForm();
+  
+  // Clear the image
+  const imageElement = document.getElementById('pulleyImage');
+  imageElement.src = '';
+  // imageElement.alt = 'Pulley Type Image';
+  imageElement.style.opacity = '0.5';
+};
+</script>
+
+
+<script>
+  document.getElementById('pitch').addEventListener('change', function(e) {
+  const enteredPitch = this.value.trim();
+  const availablePitches = [...new Set(pulleyData.map(item => item.pitch))];
+  
+  const pitchMessage = document.getElementById('pitchMessage');
+  
+  if (enteredPitch === '') {
+    pitchMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availablePitches.includes(enteredPitch)) {
+    pitchMessage.textContent = ` Pitch "${enteredPitch}" not available.`;
+    pitchMessage.style.color = 'red';
+    pitchMessage.style.display = 'block';
+
+  } else {
+    // pitchMessage.textContent = `✓ Pitch "${enteredPitch}" available`;
+    // pitchMessage.style.color = 'green';
+    pitchMessage.style.display = 'none';
+  }
+});
+
+
+
+// BELT WIDTH validation
+document.getElementById('beltWidth').addEventListener('change', function(e) {
+  const enteredBeltWidth = this.value.trim();
+  const availableBeltWidths = [...new Set(pulleyData.map(item => item.beltWidth))];
+  
+  const beltWidthMessage = document.getElementById('beltWidthMessage');
+  
+  if (enteredBeltWidth === '') {
+    beltWidthMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availableBeltWidths.includes(enteredBeltWidth)) {
+    beltWidthMessage.textContent = ` Belt Width "${enteredBeltWidth}" not available.`;
+    beltWidthMessage.style.color = 'red';
+    beltWidthMessage.style.display = 'block';
+  } else {
+    // beltWidthMessage.textContent = `✓ Belt Width "${enteredBeltWidth}" available`;
+    // beltWidthMessage.style.color = 'green';
+    beltWidthMessage.style.display = 'none';
+  }
+});
+
+// NO. OF TEETH validation
+document.getElementById('noOfTeeth').addEventListener('change', function(e) {
+  const enteredTeeth = this.value.trim();
+  const availableTeeth = [...new Set(pulleyData.map(item => item.noOfTeeth))];
+  
+  const teethMessage = document.getElementById('noOfTeethMessage');
+  
+  if (enteredTeeth === '') {
+    teethMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availableTeeth.includes(enteredTeeth)) {
+    teethMessage.textContent = ` No. of Teeth "${enteredTeeth}" not available. `;
+    teethMessage.style.color = 'red';
+    teethMessage.style.display = 'block';
+  } else {
+    // teethMessage.textContent = `✓ No. of Teeth "${enteredTeeth}" available`;
+    // teethMessage.style.color = 'green';
+    teethMessage.style.display = 'none';
+  }
+});
+  </script>
+
+<!-- ---------**************timing pully popup fetch end*******************------  -->
+
+<!-- ---------********************poly v pully popup fetch start*********************-----  -->
 
 
  <script>
@@ -1840,7 +2064,7 @@ document.getElementById('pulleyDesignation').addEventListener('input', function(
 
 // Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
-   Papa.parse("../Poly_V_Pulleys.xlsx.csv", {
+   Papa.parse("../Poly_V_Pulleys.csv", {
   download: true,
   header: false,
   skipEmptyLines: false,
@@ -1929,7 +2153,7 @@ function fetchPolyvData() {
 
     showPolyvMessage('Data fetched successfully!', 'polyv-success');
   } else {
-    showPolyvMessage('No matching data found. Please check your inputs.', 'polyv-error');
+     showPolyvMessage('No matching data found. Please check your inputs.', 'polyv-error');
 
     const availableForSectionDe = polyvPulleyData.filter(
       item => item.section === section && item.de === deMm
@@ -1942,6 +2166,21 @@ function fetchPolyvData() {
     } else {
       console.log(`No entries found for ${section} ${deMm}`);
     }
+    
+    // ADD THIS PART - Clear all result fields when no match found
+    document.getElementById('polyvSerSit').value = '';
+    document.getElementById('polyvLMm').value = '';
+    document.getElementById('polyvZMm').value = '';
+    document.getElementById('polyvMMm').value = '';
+    document.getElementById('polyvUMm').value = '';
+    document.getElementById('polyvDMm').value = '';
+    document.getElementById('polyvWMm').value = '';
+    
+    // Clear the image as well
+    const imageElement = document.getElementById('Poly_v_pulley_Image');
+    imageElement.src = '';
+    // imageElement.alt = 'Pulley Type Image';
+    imageElement.style.opacity = '0.5';
   }
 }
 function openPolyvPopup() {
@@ -2000,9 +2239,204 @@ document.addEventListener('DOMContentLoaded', () => {
        
        </script>
 
-    <!-- ---------poly v pully popup fetch end------  -->
+<!-- Image fetching Code  -->
 
-<!-- ---------diverter Wheel popup fetch start-----  -->
+
+<script>
+// Image mapping for Poly-V pulley types
+const polyvTypeImageMap = {
+  '1': 'Type_1',
+  '2': 'Type_2',
+  '3': 'Type_3',
+  '4': 'Type_4',
+  '5': 'Type_5',
+  '6': 'Type_6',
+  '7': 'Type_7',
+  '8': 'Type_8',
+  '9': 'Type_9',
+  '10': 'Type_10'
+};
+
+// Function to load and display Poly-V pulley image based on type
+function loadPolyvPulleyImage(polyvType) {
+  const imageElement = document.getElementById('Poly_v_pulley_Image');
+  
+  if (!polyvType || polyvType.trim() === '-') {
+    // If no pulley type, show placeholder
+    imageElement.src = '';
+    imageElement.alt = 'No image available';
+    imageElement.style.opacity = '0.5';
+    return;
+  }
+
+  // Get the image filename from mapping
+  const imageFileName = polyvTypeImageMap[polyvType.trim()];
+  
+  if (!imageFileName) {
+    console.warn(`No image mapping found for Poly-V pulley type: ${polyvType}`);
+    imageElement.src = '';
+    imageElement.alt = 'Image not found';
+    imageElement.style.opacity = '0.5';
+    return;
+  }
+
+  // Construct the image path
+  const imagePath = `../global assets/Poly_V_Pulley_Type_Image/${imageFileName}.svg`;
+  
+  // Set the image source
+  imageElement.src = imagePath;
+  // imageElement.alt = `Poly-V Pulley Type ${polyvType}`;
+  imageElement.style.opacity = '1';
+  
+  console.log(`Loading Poly-V pulley image for type: ${polyvType}`);
+}
+
+// Hook into the existing fetchPolyvData function
+// const originalFetchPolyvData = window.fetchPolyvData;
+
+// window.fetchPolyvData = function() {
+//   originalFetchPolyvData();
+  
+//   // Get the pulley type that was just loaded
+//   const polyvType = document.getElementById('polyvType').value;
+  
+//   // Load the corresponding image
+//   if (polyvType) {
+//     loadPolyvPulleyImage(polyvType);
+//   }
+// };
+// Hook into the existing fetchPolyvData function - ONLY load image on SUCCESS
+const originalFetchPolyvData = window.fetchPolyvData;
+
+window.fetchPolyvData = function() {
+  // Store current type value BEFORE fetching
+  const typeBeforeFetch = document.getElementById('polyvType').value;
+  
+  // Call original function
+  originalFetchPolyvData();
+  
+  // Check if data was actually fetched successfully by checking if results are populated
+  const serSitValue = document.getElementById('polyvSerSit').value;
+  
+  // Only load image if results were successfully fetched (serSit field has value)
+  if (serSitValue && serSitValue !== '') {
+    const polyvType = document.getElementById('polyvType').value;
+    if (polyvType) {
+      loadPolyvPulleyImage(polyvType);
+    }
+  } else {
+    // If no match found, clear the image
+    const imageElement = document.getElementById('Poly_v_pulley_Image');
+    imageElement.src = '';
+    // imageElement.alt = 'Pulley Type Image';
+    imageElement.style.opacity = '0.5';
+  }
+};
+
+// Clear image when Poly-V form is cleared
+const originalClearPolyvForm = window.clearPolyvForm;
+
+window.clearPolyvForm = function() {
+  originalClearPolyvForm();
+  
+  // Clear the image
+  const imageElement = document.getElementById('Poly_v_pulley_Image');
+  imageElement.src = '';
+  // imageElement.alt = 'Pulley Type Image';
+  imageElement.style.opacity = '0.5';
+};
+</script>
+
+
+<script>
+
+  // POLY-V SECTION validation
+document.getElementById('polyvTypeInput').addEventListener('change', function(e) {
+  const enteredSection = this.value.trim();
+  const availableSections = [...new Set(polyvPulleyData.map(item => item.section))];
+  
+  const sectionMessage = document.getElementById('polyvSectionMessage');
+  
+  if (enteredSection === '') {
+    sectionMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availableSections.includes(enteredSection)) {
+    sectionMessage.textContent = ` Section "${enteredSection}" not available.`;
+    sectionMessage.style.color = 'red';
+    sectionMessage.style.display = 'block';
+  } else {
+    sectionMessage.style.display = 'none';
+  }
+});
+
+// POLY-V DE (MM) validation
+document.getElementById('polyvDeMm').addEventListener('change', function(e) {
+  const enteredDe = this.value.trim();
+  const availableDe = [...new Set(polyvPulleyData.map(item => item.de))];
+  
+  const deMessage = document.getElementById('polyvDeMessage');
+  
+  if (enteredDe === '') {
+    deMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availableDe.includes(enteredDe)) {
+    deMessage.textContent = ` De (mm) "${enteredDe}" not available.`;
+    deMessage.style.color = 'red';
+    deMessage.style.display = 'block';
+  } else {
+    deMessage.style.display = 'none';
+  }
+});
+
+// POLY-V NUMBER OF GROOVES validation
+document.getElementById('polyvNumGrooves').addEventListener('change', function(e) {
+  const enteredGrooves = this.value.trim();
+  const availableGrooves = [...new Set(polyvPulleyData.map(item => item.grooves))];
+  
+  const groovesMessage = document.getElementById('polyvGroovesMessage');
+  
+  if (enteredGrooves === '') {
+    groovesMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availableGrooves.includes(enteredGrooves)) {
+    groovesMessage.textContent = ` Number of Grooves "${enteredGrooves}" not available.`;
+    groovesMessage.style.color = 'red';
+    groovesMessage.style.display = 'block';
+  } else {
+    groovesMessage.style.display = 'none';
+  }
+});
+
+// POLY-V TYPE validation
+document.getElementById('polyvType').addEventListener('change', function(e) {
+  const enteredType = this.value.trim();
+  const availableTypes = [...new Set(polyvPulleyData.map(item => item.type))];
+  
+  const typeMessage = document.getElementById('polyvTypeValidationMessage');
+  
+  if (enteredType === '') {
+    typeMessage.style.display = 'none';
+    return;
+  }
+  
+  if (!availableTypes.includes(enteredType)) {
+    typeMessage.textContent = ` Type "${enteredType}" not available.`;
+    typeMessage.style.color = 'red';
+    typeMessage.style.display = 'block';
+  } else {
+    typeMessage.style.display = 'none';
+  }
+});
+  </script>
+    <!-- ---------**************poly v pully popup fetch end***************------  -->
+
+<!-- ---------*****************diverter Wheel popup fetch start****************-----  -->
 
     <script>
     let diverterWheelData = [];
@@ -2249,7 +2683,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 </script>
 
-    <!-- ---------diverter Wheel popup fetch end------  -->
+    <!-- ---------***************diverter Wheel popup fetch end******************------  -->
 </body>
 
 
