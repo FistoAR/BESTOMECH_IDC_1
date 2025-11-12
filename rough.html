@@ -98,6 +98,36 @@
       opacity: 1;
     }
   </style>
+
+
+<style>
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px 8px 8px 32px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+</style>
 </head>
 
 <body>
@@ -188,102 +218,102 @@
 
 
 
-<!-- ===================== TAPPER Bush PULLEY POPUP HTML ===================== -->
+  <!-- ===================== TAPPER Bush PULLEY POPUP HTML ===================== -->
 
-<div class="popup-overlay" id="tapperPushVPopupOverlay">
-    <div class="popup-container">
-        <div class="popup-header">
-            <h2>Tapper Push V Pulley</h2>
-            <button class="close-btn" onclick="closeTapperPushVPopup()">&times;</button>
-        </div>
-        <div class="popup-body">
-            <div class="section">
-                <div class="section-title">Enter Details</div>
-                <div class="input-row">
-                    <div class="form-group">
-                        <label>PCD</label>
-                        <input type="number" id="tapperPushVPcd" placeholder="e.g., 67" data-maxlength="3">
-                        <div id="tapperPushVPcdMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
-                    </div>
+  <div class="popup-overlay" id="tapperPushVPopupOverlay">
+      <div class="popup-container">
+          <div class="popup-header">
+              <h2>Tapper Push V Pulley</h2>
+              <button class="close-btn" onclick="closeTapperPushVPopup()">&times;</button>
+          </div>
+          <div class="popup-body">
+              <div class="section">
+                  <div class="section-title">Enter Details</div>
+                  <div class="input-row">
+                      <div class="form-group">
+                          <label>PCD</label>
+                          <input type="number" id="tapperPushVPcd" placeholder="e.g., 67" data-maxlength="3">
+                          <div id="tapperPushVPcdMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+                      </div>
 
-                    <div class="form-group">
-                        <label>No. Of Grooves</label>
-                        <input type="number" id="tapperPushVNoOfGrooves" placeholder="e.g., 1" data-maxlength="2">
-                        <div id="tapperPushVNoOfGroovesMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
-                    </div>
+                      <div class="form-group">
+                          <label>No. Of Grooves</label>
+                          <input type="number" id="tapperPushVNoOfGrooves" placeholder="e.g., 1" data-maxlength="2">
+                          <div id="tapperPushVNoOfGroovesMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+                      </div>
 
-                    <div class="form-group">
-                        <label>Grooves Section</label>
-                        <select id="tapperPushVGroovesSection">
-                            <option value="">Select Section</option>
-                            <option value="Z">Z</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                        </select>
-                        <div id="tapperPushVGroovesSectionMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
-                    </div>
-                </div>
-                <button class="fetch-btn" onclick="fetchTapperPushVData()">Search</button>
-                <div class="message" id="tapperPushVMessage"></div>
-            </div>
+                      <div class="form-group">
+                          <label>Grooves Section</label>
+                          <select id="tapperPushVGroovesSection">
+                              <option value="">Select Section</option>
+                              <option value="Z">Z</option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                          </select>
+                          <div id="tapperPushVGroovesSectionMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+                      </div>
+                  </div>
+                  <button class="fetch-btn" onclick="fetchTapperPushVData()">Search</button>
+                  <div class="message" id="tapperPushVMessage"></div>
+              </div>
 
-            <div class="flex items-center justify-around">
-                <div class="section w-[65%]">
-                    <div class="section-title">Fetched Results</div>
+              <div class="flex items-center justify-around">
+                  <div class="section w-[65%]">
+                      <div class="section-title">Fetched Results</div>
 
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Product Code</label>
-                            <input type="text" id="tapperPushVProductCode" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Bush</label>
-                            <input type="text" id="tapperPushVBush" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Type</label>
-                            <input type="text" id="tapperPushVType" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Outside OD</label>
-                            <input type="text" id="tapperPushVOutsideOd" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Max. Bore Metric</label>
-                            <input type="text" id="tapperPushVMaxBoreMetric" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>Max. Bore Inch</label>
-                            <input type="text" id="tapperPushVMaxBoreInch" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>L</label>
-                            <input type="text" id="tapperPushVL" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>N</label>
-                            <input type="text" id="tapperPushVN" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label>M</label>
-                            <input type="text" id="tapperPushVM" disabled>
-                        </div>
-                    </div>
-                </div>
+                      <div class="form-grid">
+                          <div class="form-group">
+                              <label>Product Code</label>
+                              <input type="text" id="tapperPushVProductCode" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>Bush</label>
+                              <input type="text" id="tapperPushVBush" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>Type</label>
+                              <input type="text" id="tapperPushVType" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>Outside OD</label>
+                              <input type="text" id="tapperPushVOutsideOd" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>Max. Bore Metric</label>
+                              <input type="text" id="tapperPushVMaxBoreMetric" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>Max. Bore Inch</label>
+                              <input type="text" id="tapperPushVMaxBoreInch" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>L</label>
+                              <input type="text" id="tapperPushVL" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>N</label>
+                              <input type="text" id="tapperPushVN" disabled>
+                          </div>
+                          <div class="form-group">
+                              <label>M</label>
+                              <input type="text" id="tapperPushVM" disabled>
+                          </div>
+                      </div>
+                  </div>
 
-                <div class="w-[25%] rounded-lg overflow-hidden flex items-center justify-center">
-                    <img id="tapperPushVImage" src="" alt="" class="w-full h-full object-contain p-4">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+                  <div class="w-[25%] rounded-lg overflow-hidden flex items-center justify-center">
+                      <img id="tapperPushVImage" src="" alt="" class="w-full h-full object-contain p-4">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
 
-<!-- *************Tapper push v pulley popup end*********************  -->
+
+
+  <!-- *************Tapper push v pulley popup end*********************  -->
 
 
 
@@ -523,65 +553,228 @@
     position: absolute;
     top: 36%;" onclick="openPolyvPopup()">Click</button> -->
 
-<!-- Diverter Wheel Popup -->
-<div class="diverter-popup-overlay" id="diverterPopupOverlay">
-    <div class="diverter-popup-container">
-        <div class="diverter-popup-header">
-            <h2>Diverter Wheel</h2>
-            <button class="diverter-close-btn" onclick="closeDiverterPopup()">&times;</button>
-        </div>
-        <div class="diverter-popup-body">
-            <div class="diverter-section">
-                <div class="diverter-section-title">Enter Details</div>
-                <div class="diverter-input-row">
-                    <div class="diverter-form-group">
-                        <label>Dia (mm)</label>
-                        <input type="number" id="diverterDia" placeholder="e.g., 160" data-maxlength="3">
-                    </div>
-                    <div class="diverter-form-group">
-                        <label>Width (mm)</label>
-                        <input type="number" id="diverterWidth" placeholder="e.g., 70" data-maxlength="3">
-                    </div>
-                    <div class="diverter-form-group">
-                        <label>No.Of Grooves</label>
-                        <input type="number" id="diverterGrooves" placeholder="e.g., 5" data-maxlength="2">
-                    </div>
-                    <div class="diverter-form-group">
-                        <label>Rope Diameter (mm)</label>
-                        <input type="number" id="diverterRopeDia" placeholder="e.g., 6" data-maxlength="2">
-                    </div>
-                    <div class="diverter-form-group">
-                        <label>Pitch (mm)</label>
-                        <input type="number" id="diverterPitch" placeholder="e.g., 12" data-maxlength="2">
-                    </div>
-                    <div class="diverter-form-group">
-                        <label>Bearing (Make-SKF/FAG)</label>
-                        <input type="text" id="diverterBearing" placeholder="e.g., 6008ZZ" maxlength="6">
-                    </div>
-                </div>
-                <button class="diverter-fetch-btn" onclick="fetchDiverterData()">Fetch</button>
-                <div class="diverter-message" id="diverterMessage"></div>
+
+
+
+<!-- -----------------*************sprocket code start****************** ----------------- -->
+
+ <!-- POPUP OVERLAY -->
+    <div id="sprocketPopupOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-1000 flex items-center justify-center p-4" onclick="if(event.target === this) closeSprocketPopup()">
+        
+        <!-- POPUP CONTAINER -->
+        <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+            
+            <!-- HEADER -->
+            <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white px-8 py-6 flex justify-between items-center sticky top-0 z-10">
+                <h2 class="text-2xl font-bold">Sprocket</h2>
+                <button onclick="closeSprocketPopup()" class="bg-white bg-opacity-20 hover:bg-opacity-30 rounded p-1 transition-all text-3xl leading-none">
+                    &times;
+                </button>
             </div>
 
-            <div class="diverter-section">
-                <div class="diverter-section-title">Fetched Results</div>
-                <div class="diverter-form-grid">
-                    <div class="diverter-form-group">
-                        <label>Item Code</label>
-                        <input type="text" id="diverterItemCode" disabled>
+            <!-- BODY -->
+            <div class="p-8">
+                
+                <!-- INPUT SECTION -->
+                <div class="mb-10">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 pb-3 border-b-2 border-gray-200">Enter Details</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        
+                        <!-- Teeth Input -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">No. of Teeth (Z)</label>
+                            <input 
+                                type="number" 
+                                id="sprocketTeeth" 
+                                placeholder="e.g., 19" 
+                                data-maxlength="3"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-600 transition-all"
+                            >
+                            <div id="sprocketTeethMessage" class="text-xs text-red-600 font-semibold mt-1 hidden"></div>
+                        </div>
+
+                        <!-- Pitch Input -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Pitch (mm)</label>
+                            <input 
+                                type="number" 
+                                id="sprocketPitch" 
+                                placeholder="e.g., 1" 
+                                step="0.1"
+                                data-maxlength="2"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-600 transition-all"
+                            >
+                            <div id="sprocketPitchMessage" class="text-xs text-red-600 font-semibold mt-1 hidden"></div>
+                        </div>
+
+                        <!-- Type Select -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Type</label>
+                            <select 
+                                id="sprocketType"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-600 transition-all"
+                            >
+                                <option value="">Select Type</option>
+                                <option value="simplex">Simplex</option>
+                                <option value="duplex">Duplex</option>
+                                <option value="triplex">Triplex</option>
+                            </select>
+                            <div id="sprocketTypeMessage" class="text-xs text-red-600 font-semibold mt-1 hidden"></div>
+                        </div>
                     </div>
-                    <div class="diverter-form-group">
-                        <label>Material</label>
-                        <input type="text" id="diverterMaterial" disabled>
+
+                    <!-- Fetch Button -->
+                    <button 
+                        onclick="fetchSprocketData()"
+                        class="bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-md transition-all hover:shadow-lg hover:-translate-y-0.5"
+                    >
+                        Fetch
+                    </button>
+
+                    <!-- Message -->
+                    <div id="sprocketMessage" class="mt-4 p-3 rounded-md text-sm font-semibold border-l-4 hidden"></div>
+                </div>
+
+                <!-- RESULTS SECTION -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 pb-3 border-b-2 border-gray-200">Fetched Results</h3>
+                    
+                    <div class="flex flex-col lg:flex-row gap-8 items-start justify-between">
+                        
+                        <!-- Results Grid (65%) -->
+                        <div class="w-full lg:w-[65%]">
+                            <div id="sprocketResultsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <!-- Results populated here -->
+                            </div>
+                        </div>
+
+                        <!-- Image Container (25%) -->
+                        <div class="w-full lg:w-[25%] rounded-lg overflow-hidden flex items-center justify-center bg-gray-50 border border-gray-300 min-h-80 p-4">
+                            <img 
+                                id="sprocketImage" 
+                                src="" 
+                                alt="Sprocket" 
+                                class="max-w-full max-h-full object-contain opacity-30"
+                            >
+                        </div>
                     </div>
-                    <div class="diverter-form-group">
-                        <label>Shaft Diameter (mm)</label>
-                        <input type="text" id="diverterShaftDia" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- -----------------*************sprocket code end****************** ----------------- -->
+
+
+<!-- Diverter Wheel Popup -->
+<div class="popup-overlay" id="diverterPopupOverlay">
+    <div class="popup-container">
+        <div class="popup-header">
+            <h2>Diverter Wheel</h2>
+            <button class="close-btn" onclick="closeDiverterPopup()">&times;</button>
+        </div>
+        <div class="popup-body">
+            <div class="section">
+                <div class="section-title">Enter Details</div>
+                <div class="input-row">
+                    <div class="form-group">
+                        <label>Dia (mm)</label>
+                        <input type="number" id="diverterDia" placeholder="e.g., 160" data-maxlength="3">
+                        <div id="diverterDiaMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
                     </div>
-                    <div class="diverter-form-group">
-                        <label>Rated Load (kg)</label>
-                        <input type="text" id="diverterRatedLoad" disabled>
+                    <div class="form-group">
+                        <label>No. Of Grooves</label>
+                        <input type="number" id="diverterGrooves" placeholder="e.g., 5" data-maxlength="2">
+                        <div id="diverterGroovesMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
                     </div>
+                    <div class="form-group">
+                        <label>Rope Diameter (mm)</label>
+                        <input type="number" id="diverterRopeDia" placeholder="e.g., 6" data-maxlength="2">
+                        <div id="diverterRopeDiaMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label>Shaft Diameter (Ø mm)</label>
+                        <input type="number" id="diverterShaftDiaInput" placeholder="e.g., 25" data-maxlength="3">
+                        <div id="diverterShaftDiaMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+                    </div> -->
+
+                    
+<div class="form-group" style="position: relative;">
+    <label for="diverterShaftDiaInput">Shaft Diameter</label>
+    <div style="position: relative; display: flex; align-items: center;">
+        <!-- Static Ø Symbol -->
+        <span style="
+            position: absolute;
+            left: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            pointer-events: none;
+            z-index: 1;
+        ">Ø</span>
+        
+        <!-- Input Field with left padding -->
+        <input 
+            type="number" 
+            id="diverterShaftDiaInput" 
+            placeholder="e.g., 40" 
+            data-maxlength="3"
+            style="
+                padding-left: 32px;
+                padding-right: 8px;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            "
+        >
+    </div>
+    <div id="diverterShaftDiaMessage" style="display: none; font-size: 12px; margin-top: 5px; font-weight: bold;"></div>
+</div>
+                    
+                </div>
+                <button class="fetch-btn" onclick="fetchDiverterDataNew()">Search</button>
+                <div class="message" id="diverterMessage"></div>
+            </div>
+
+            <div class="flex items-center justify-around">
+                <div class="section w-[65%]">
+                    <div class="section-title">Fetched Results</div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Item Code</label>
+                            <input type="text" id="diverterItemCode" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Width (mm)</label>
+                            <input type="text" id="diverterWidth" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Pitch (mm)</label>
+                            <input type="text" id="diverterPitch" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Bearing</label>
+                            <input type="text" id="diverterBearing" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Material</label>
+                            <input type="text" id="diverterMaterial" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Rated Load (kg)</label>
+                            <input type="text" id="diverterRatedLoad" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-[25%] rounded-lg overflow-hidden flex items-center justify-center">
+                    <img id="diverterImage" src="" alt="" class="w-full h-full object-contain p-4">
                 </div>
             </div>
         </div>
@@ -630,7 +823,9 @@
 <button class="open-btn" style="right: 50%; position: absolute; top: 36%;" onclick="openTapperPushVPopup()">Click 2</button>
 
 
-
+ <button onclick="openSprocketPopup()" class="fixed right-12 top-1/3 z-100 bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
+        Sprocket Finder
+    </button>
             </div>
             <div class="timing-pulley-bottom">
               <div class="pulley-left"><img src="../global assets/Images/TimingPulley/tp_grid.svg" alt=""></div>
@@ -1962,7 +2157,7 @@ document.querySelectorAll('#tapperPushVPopupOverlay input[type="number"][data-ma
 </script>
 
 
-<!-- **************************Tapper Push v Pulley Code start***************  -->
+<!-- **************************Tapper Push v Pulley Code end***************  -->
 
 
 
@@ -2835,253 +3030,624 @@ document.getElementById('polyvType').addEventListener('change', function(e) {
   </script>
     <!-- ---------**************poly v pully popup fetch end***************------  -->
 
-<!-- ---------*****************diverter Wheel popup fetch start****************-----  -->
+
+
+<!-- -----------------*************sprocket code start****************** ----------------- -->
+
+
+
 
     <script>
-    let diverterWheelData = [];
+        let sprocketData = [];
 
-// Load Diverter Wheel CSV file automatically when page loads
+        // Load CSV file
+        window.addEventListener('DOMContentLoaded', () => {
+            Papa.parse("../Sprocket.csv", {
+                download: true,
+                header: false,
+                skipEmptyLines: true,
+                dynamicTyping: false,
+                transform: function(value) {
+                    return String(value || '').trim();
+                },
+                complete: function(results) {
+                    sprocketData = [];
+
+                    results.data.forEach((row, index) => {
+                        const values = row.map(v => String(v || '').trim());
+                        if (index < 1) return;
+                        if (!values[0]) return;
+                        if (/^\d+$/.test(values[0]) && /^\d+/.test(values[1])) {
+                            sprocketData.push({
+                                z: values[0],
+                                pitch: values[1],
+                                do: values[2],
+                                dp: values[3],
+                                h: values[4],
+                                d1_simplex: values[5],
+                                a_simplex: values[6],
+                                d2: values[7],
+                                d1_duplex: values[8],
+                                a_duplex: values[9],
+                                d3: values[10],
+                                d1_triplex: values[11],
+                                a_triplex: values[12]
+                            });
+                        }
+                    });
+
+                    console.log("✅ Sprocket Data loaded:", sprocketData.length);
+                    console.log("Sample:", sprocketData.slice(0, 3));
+                },
+                error: function(error) {
+                    console.error("Error loading CSV:", error);
+                    showSprocketMessage('Error loading data', 'error');
+                }
+            });
+        });
+
+        function fetchSprocketData() {
+            hideSprocketMessage();
+            clearValidationMessages();
+
+            const z = document.getElementById('sprocketTeeth').value.trim();
+            const pitch = document.getElementById('sprocketPitch').value.trim();
+            const type = document.getElementById('sprocketType').value.trim();
+
+            let hasError = false;
+            const availableTeeth = [...new Set(sprocketData.map(item => item.z))];
+            const availablePitches = [...new Set(sprocketData.map(item => item.pitch))];
+
+            if (!z) {
+                showValidationMessage('sprocketTeethMessage', 'Teeth is required');
+                hasError = true;
+            } else if (!availableTeeth.includes(z)) {
+                showValidationMessage('sprocketTeethMessage', `Teeth "${z}" not available`);
+                hasError = true;
+            }
+
+            if (!pitch) {
+                showValidationMessage('sprocketPitchMessage', 'Pitch is required');
+                hasError = true;
+            } else if (!availablePitches.includes(pitch)) {
+                showValidationMessage('sprocketPitchMessage', `Pitch "${pitch}" not available`);
+                hasError = true;
+            }
+
+            if (!type) {
+                showValidationMessage('sprocketTypeMessage', 'Type is required');
+                hasError = true;
+            }
+
+            if (hasError) {
+                showSprocketMessage('Please fill in all fields correctly', 'error');
+                return;
+            }
+
+            console.log('Searching for:', { z, pitch, type });
+
+            const result = sprocketData.find(item =>
+                item.z === z && item.pitch === pitch
+            );
+
+            if (result) {
+                displaySprocketResults(result, type);
+                loadSprocketImage(pitch);
+                showSprocketMessage('Data fetched successfully!', 'success');
+            } else {
+                showSprocketMessage('No matching data found. Please check your inputs.', 'error');
+                clearSprocketResults();
+                document.getElementById('sprocketImage').src = '';
+                document.getElementById('sprocketImage').classList.add('opacity-30');
+            }
+        }
+
+        function displaySprocketResults(result, type) {
+            const grid = document.getElementById('sprocketResultsGrid');
+            grid.innerHTML = '';
+
+            const commonFields = [
+                { label: 'Do', value: result.do },
+                { label: 'Dp', value: result.dp },
+                { label: 'H', value: result.h }
+            ];
+
+            let typeFields = [];
+
+            if (type === 'simplex') {
+                typeFields = [
+                    { label: 'D1', value: result.d1_simplex },
+                    { label: 'A', value: result.a_simplex }
+                ];
+            } else if (type === 'duplex') {
+                typeFields = [
+                    { label: 'D2', value: result.d2 },
+                    { label: 'D1', value: result.d1_duplex },
+                    { label: 'A', value: result.a_duplex }
+                ];
+            } else if (type === 'triplex') {
+                typeFields = [
+                    { label: 'D3', value: result.d3 },
+                    { label: 'D1', value: result.d1_triplex },
+                    { label: 'A', value: result.a_triplex }
+                ];
+            }
+
+            [...commonFields, ...typeFields].forEach(field => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">${field.label}</label>
+                    <input type="text" value="${field.value}" disabled class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-600 cursor-not-allowed">
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function clearSprocketResults() {
+            document.getElementById('sprocketResultsGrid').innerHTML = '';
+        }
+
+        const sprocketPitchImageMap = {
+            '1': 'sprocket_pitch_1',
+            '1.5': 'sprocket_pitch_1_5',
+            '2': 'sprocket_pitch_2',
+            '2.5': 'sprocket_pitch_2_5',
+            '3': 'sprocket_pitch_3'
+        };
+
+        function loadSprocketImage(pitch) {
+            const imageElement = document.getElementById('sprocketImage');
+            const imageFileName = sprocketPitchImageMap[pitch];
+
+            if (!imageFileName) {
+                imageElement.src = '';
+                imageElement.classList.add('opacity-30');
+                return;
+            }
+
+            imageElement.src = `../global assets/Sprocket/${imageFileName}.svg`;
+            imageElement.classList.remove('opacity-30');
+        }
+
+        function openSprocketPopup() {
+            document.getElementById('sprocketPopupOverlay').classList.remove('hidden');
+        }
+
+        function closeSprocketPopup() {
+            document.getElementById('sprocketPopupOverlay').classList.add('hidden');
+            clearSprocketForm();
+        }
+
+        function clearSprocketForm() {
+            document.getElementById('sprocketTeeth').value = '';
+            document.getElementById('sprocketPitch').value = '';
+            document.getElementById('sprocketType').value = '';
+            clearSprocketResults();
+            hideSprocketMessage();
+            clearValidationMessages();
+        }
+
+        function showSprocketMessage(text, type) {
+            const msg = document.getElementById('sprocketMessage');
+            msg.textContent = text;
+            if (type === 'success') {
+                msg.className = 'mt-4 p-3 rounded-md text-sm font-semibold border-l-4 bg-green-50 text-green-700 border-green-500';
+            } else {
+                msg.className = 'mt-4 p-3 rounded-md text-sm font-semibold border-l-4 bg-red-50 text-red-700 border-red-500';
+            }
+            msg.classList.remove('hidden');
+        }
+
+        function hideSprocketMessage() {
+            document.getElementById('sprocketMessage').classList.add('hidden');
+        }
+
+        function showValidationMessage(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.remove('hidden');
+        }
+
+        function clearValidationMessages() {
+            document.getElementById('sprocketTeethMessage').classList.add('hidden');
+            document.getElementById('sprocketPitchMessage').classList.add('hidden');
+            document.getElementById('sprocketTypeMessage').classList.add('hidden');
+        }
+
+        document.getElementById('sprocketPopupOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeSprocketPopup();
+        });
+
+        document.getElementById('sprocketTeeth').addEventListener('change', function() {
+            const entered = this.value.trim();
+            const available = [...new Set(sprocketData.map(item => item.z))];
+            const msg = document.getElementById('sprocketTeethMessage');
+            if (entered === '') {
+                msg.classList.add('hidden');
+            } else if (!available.includes(entered)) {
+                msg.textContent = `Teeth "${entered}" not available`;
+                msg.classList.remove('hidden');
+            } else {
+                msg.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('sprocketPitch').addEventListener('change', function() {
+            const entered = this.value.trim();
+            const available = [...new Set(sprocketData.map(item => item.pitch))];
+            const msg = document.getElementById('sprocketPitchMessage');
+            if (entered === '') {
+                msg.classList.add('hidden');
+            } else if (!available.includes(entered)) {
+                msg.textContent = `Pitch "${entered}" not available`;
+                msg.classList.remove('hidden');
+            } else {
+                msg.classList.add('hidden');
+            }
+        });
+
+        document.querySelectorAll('input[data-maxlength]').forEach(input => {
+            input.min = 0;
+            input.addEventListener('input', function() {
+                const max = parseInt(this.dataset.maxlength);
+                if (this.value.length > max) {
+                    this.value = this.value.slice(0, max);
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+<!-- -----------------*************sprocket code end****************** ----------------- -->
+
+
+
+
+<!-- ---------*****************diverter Wheel popup fetch start****************-----  -->
+
+<script>
+let diverterWheelDataNew = [];
+
+// Load CSV file automatically when page loads
 window.addEventListener('DOMContentLoaded', () => {
     Papa.parse("../Diverter_Wheel.csv", {
         download: true,
         header: false,
-        skipEmptyLines: false,
+        skipEmptyLines: true,
+        dynamicTyping: false,
         encoding: "UTF-8",
-        complete: function (results) {
-            diverterWheelData = results.data
-                .map((row, index) => {
-                    const values = Array.isArray(row) ? row : Object.values(row);
-                    const cleanValues = values.map(v => (v || '').toString().trim());
+        complete: function(results) {
+            diverterWheelDataNew = [];
 
-                    // Skip header rows and empty rows
-                    if (index < 3) return null;
-                    if (cleanValues.every(v => v === '')) return null;
-                    if (cleanValues[0] === 'ITEM CODE' || cleanValues[1] === 'DIA') return null;
+            results.data.forEach((row, index) => {
+                const values = row.map(v => String(v || '').trim());
+                const firstCol = values[0];
 
-                    // Skip rows that don't have numeric DIA
-                    if (!cleanValues[1] || isNaN(cleanValues[1])) return null;
+                // Skip header rows
+                if (index < 3) return;
 
-                    // Clean shaft diameter data
-                    let shaftDia = cleanValues[8] || '-';
-                    if (shaftDia && shaftDia !== '-') {
-                        shaftDia = shaftDia.replace(/[�?]/g, '').trim();
-                        shaftDia = shaftDia.replace(/[ØøΦφ]/g, '').trim();
-                        if (shaftDia && shaftDia !== '') {
-                            shaftDia = 'Ø' + shaftDia;
-                        }
-                    }
+                // Skip empty rows
+                if (!firstCol || firstCol.toUpperCase().includes('ITEM CODE')) {
+                    return;
+                }
 
-                    return {
-                        itemCode: cleanValues[0] || '-',
-                        dia: cleanValues[1] || '',
-                        width: cleanValues[2] || '',
-                        grooves: cleanValues[3] || '',
-                        ropeDia: cleanValues[4] || '',
-                        pitch: cleanValues[5] || '',
-                        bearing: cleanValues[6] || '-',
-                        material: cleanValues[7] || '-',
-                        shaftDia: shaftDia,
-                        ratedLoad: cleanValues[9] || '-'
-                    };
-                })
-                .filter(row => row && row.dia);
+                // Capture valid data rows
+                if (firstCol && values[1] && /^\d+$/.test(values[1])) {
+                    diverterWheelDataNew.push({
+                        itemCode: values[0] || '',
+                        dia: values[1] || '',
+                        width: values[2] || '',
+                        noOfGrooves: values[3] || '',
+                        ropeDia: values[4] || '',
+                        pitch: values[5] || '',
+                        bearing: values[6] || '',
+                        material: values[7] || '',
+                       shaftDia: String(values[8] || '').replace('Ø', '').trim(),
+                        ratedLoad: values[9] || ''
+                    });
+                }
+            });
 
-            console.log("✅ Diverter Wheel data loaded:", diverterWheelData.length);
-            console.log("Sample:", diverterWheelData.slice(0, 5));
+            console.log("✅ Diverter Wheel Data loaded:", diverterWheelDataNew.length);
+            console.log("Sample:", diverterWheelDataNew.slice(0, 3));
+            console.log("Available Shaft Dias:", [...new Set(diverterWheelDataNew.map(item => item.shaftDia))]);
+        },
+        error: function(error) {
+            console.error("Error loading CSV:", error);
+            showDiverterMessageNew('Error loading data', 'error');
         }
     });
 });
 
-function fetchDiverterData() {
-    hideDiverterMessage();
+function fetchDiverterDataNew() {
+    hideDiverterMessageNew();
 
     const dia = document.getElementById('diverterDia').value.trim();
-    const width = document.getElementById('diverterWidth').value.trim();
-    const grooves = document.getElementById('diverterGrooves').value.trim();
+    const noOfGrooves = document.getElementById('diverterGrooves').value.trim();
     const ropeDia = document.getElementById('diverterRopeDia').value.trim();
-    const pitch = document.getElementById('diverterPitch').value.trim();
-    const bearing = document.getElementById('diverterBearing').value.trim();
+    const shaftDia = document.getElementById('diverterShaftDiaInput').value.trim();
 
-    if (!dia || !width || !grooves || !ropeDia || !pitch || !bearing) {
-        showDiverterMessage('Please fill in all input fields', 'diverter-error');
+    if (!dia || !noOfGrooves || !ropeDia || !shaftDia) {
+        showDiverterMessageNew('Please fill in all input fields', 'error');
         return;
     }
 
-    console.log('Searching for:', { dia, width, grooves, ropeDia, pitch, bearing });
+    console.log('Searching for:', { dia, noOfGrooves, ropeDia, shaftDia });
+    console.log('Available data sample:', diverterWheelDataNew.slice(0, 5));
 
-    const result = diverterWheelData.find(
-        item =>
+    const result = diverterWheelDataNew.find(item => {
+        const match = 
             item.dia.trim() === dia &&
-            item.width.trim() === width &&
-            item.grooves.trim() === grooves &&
+            item.noOfGrooves.trim() === noOfGrooves &&
             item.ropeDia.trim() === ropeDia &&
-            item.pitch.trim() === pitch &&
-            item.bearing.trim().toUpperCase() === bearing.toUpperCase()
-    );
+            // item.shaftDia.trim() === shaftDia;
+        Number(item.shaftDia.trim()) === Number(shaftDia)
+
+        if (match) {
+            console.log('✅ Match found:', item);
+        }
+        return match;
+    });
 
     if (result) {
         document.getElementById('diverterItemCode').value = result.itemCode;
+        document.getElementById('diverterWidth').value = result.width;
+        document.getElementById('diverterPitch').value = result.pitch;
+        document.getElementById('diverterBearing').value = result.bearing;
         document.getElementById('diverterMaterial').value = result.material;
-        document.getElementById('diverterShaftDia').value = result.shaftDia;
         document.getElementById('diverterRatedLoad').value = result.ratedLoad;
 
-        showDiverterMessage('Data fetched successfully!', 'diverter-success');
+        loadDiverterImage();
+        showDiverterMessageNew('Data fetched successfully!', 'success');
     } else {
-        showDiverterMessage('No matching data found. Please check your inputs.', 'diverter-error');
-
-        const availableForDiaWidth = diverterWheelData.filter(
-            item => item.dia === dia && item.width === width
-        );
-        if (availableForDiaWidth.length > 0) {
-            console.log(
-                `Available options for DIA ${dia} and Width ${width}:`,
-                availableForDiaWidth.map(item => ({
-                    grooves: item.grooves,
-                    ropeDia: item.ropeDia,
-                    pitch: item.pitch,
-                    bearing: item.bearing
-                }))
-            );
-        } else {
-            console.log(`No entries found for DIA ${dia} and Width ${width}`);
-        }
+        showDiverterMessageNew('No matching data found. Please check your inputs.', 'error');
+        console.log('❌ No match found. Searching for similar entries...');
+        
+        // Debug: Show what's available for debugging
+        const diaMatches = diverterWheelDataNew.filter(item => item.dia === dia);
+        console.log(`Entries with Dia ${dia}:`, diaMatches.length);
+        
+        clearDiverterResultsNew();
+        const imageElement = document.getElementById('diverterImage');
+        imageElement.src = '';
+        imageElement.style.opacity = '0.5';
     }
 }
 
 function openDiverterPopup() {
-    document.getElementById('diverterPopupOverlay').classList.add('diverter-active');
+    document.getElementById('diverterPopupOverlay').classList.add('active');
 }
 
 function closeDiverterPopup() {
-    document.getElementById('diverterPopupOverlay').classList.remove('diverter-active');
-    clearDiverterForm();
+    document.getElementById('diverterPopupOverlay').classList.remove('active');
+    clearDiverterFormNew();
 }
 
-function clearDiverterForm() {
+function clearDiverterFormNew() {
     document.getElementById('diverterDia').value = '';
-    document.getElementById('diverterWidth').value = '';
     document.getElementById('diverterGrooves').value = '';
     document.getElementById('diverterRopeDia').value = '';
-    document.getElementById('diverterPitch').value = '';
-    document.getElementById('diverterBearing').value = '';
-    clearDiverterResults();
-    hideDiverterMessage();
+    document.getElementById('diverterShaftDiaInput').value = '';
+    clearDiverterResultsNew();
+    hideDiverterMessageNew();
 }
 
-function clearDiverterResults() {
+function clearDiverterResultsNew() {
     document.getElementById('diverterItemCode').value = '';
+    document.getElementById('diverterWidth').value = '';
+    document.getElementById('diverterPitch').value = '';
+    document.getElementById('diverterBearing').value = '';
     document.getElementById('diverterMaterial').value = '';
-    document.getElementById('diverterShaftDia').value = '';
     document.getElementById('diverterRatedLoad').value = '';
 }
 
-function showDiverterMessage(text, type) {
+function showDiverterMessageNew(text, type) {
     const msg = document.getElementById('diverterMessage');
     msg.textContent = text;
-    msg.className = `diverter-message ${type}`;
+    msg.className = `message ${type}`;
     msg.style.display = 'block';
 }
 
-function hideDiverterMessage() {
-    const msg = document.getElementById('diverterMessage');
-    if (msg) {
-        msg.style.display = 'none';
-    }
+function hideDiverterMessageNew() {
+    document.getElementById('diverterMessage').style.display = 'none';
 }
 
-// Event listener for overlay click
-document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('diverterPopupOverlay');
-    if (overlay) {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeDiverterPopup();
-            }
-        });
+document.getElementById('diverterPopupOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeDiverterPopup();
     }
 });
-    </script>
-<!-- accept 4 digits number and ZZ only js code  -->
-   <script>
-  const bearingInput = document.getElementById('diverterBearing');
 
-  bearingInput.addEventListener('input', function (e) {
-    const raw = e.target.value.toUpperCase(); // uppercase immediately
-    let out = '';
-    let digitCount = 0;
-    let zCount = 0;
+// IMAGE FETCHING CODE
+function loadDiverterImage() {
+    const imageElement = document.getElementById('diverterImage');
+    const imagePath = `../global assets/Diverter_wheel_Image/Image.svg`;
+    
+    imageElement.src = imagePath;
+    imageElement.style.opacity = '1';
+    console.log('Loading diverter wheel image');
+}
 
-    for (let i = 0; i < raw.length && out.length < 6; i++) {
-      const ch = raw[i];
+// INPUT VALIDATION - DIA
+document.getElementById('diverterDia').addEventListener('change', function(e) {
+    const enteredDia = this.value.trim();
+    const availableDias = [...new Set(diverterWheelDataNew.map(item => item.dia))];
 
-      // allow digits only in the first 4 slots
-      if (out.length < 4) {
-        if (/\d/.test(ch)) {
-          out += ch;
-          digitCount++;
-        } else {
-          // ignore non-digit until first 4 digits are filled
-          // this prevents letters being entered before the 4 digits
-          continue;
-        }
-      } else {
-        // positions 5-6: allow only 'Z' (up to 2)
-        if (ch === 'Z' && zCount < 2) {
-          out += 'Z';
-          zCount++;
-        } else {
-          // ignore anything else after the 4 digits
-          continue;
-        }
-      }
+    const diaMessage = document.getElementById('diverterDiaMessage');
+
+    if (enteredDia === '') {
+        diaMessage.style.display = 'none';
+        return;
     }
 
-    // If user pasted e.g. "6008zz123", the above will trim to "6008ZZ"
-    e.target.value = out;
-  });
-
-  // Optional: prevent typing disallowed keys (nice UX) but still rely on input handler above.
-  bearingInput.addEventListener('keypress', function (e) {
-    const key = e.key;
-    // allow control keys
-    if (key.length > 1) return;
-    const pos = e.target.selectionStart;
-
-    // If caret is before 4th position, only allow digits
-    if (pos < 4) {
-      if (!/[0-9]/.test(key)) e.preventDefault();
+    if (!availableDias.includes(enteredDia)) {
+        diaMessage.textContent = ` Dia "${enteredDia}" not available.`;
+        diaMessage.style.color = 'red';
+        diaMessage.style.display = 'block';
     } else {
-      // positions 4 or 5 (0-indexed) — allow only z/Z
-      if (!/[zZ]/.test(key)) e.preventDefault();
+        diaMessage.style.display = 'none';
     }
-  });
-</script>
+});
 
-<!-- maximum limit for input number feild  -->
+// INPUT VALIDATION - GROOVES
+document.getElementById('diverterGrooves').addEventListener('change', function(e) {
+    const enteredGrooves = this.value.trim();
+    const availableGrooves = [...new Set(diverterWheelDataNew.map(item => item.noOfGrooves))];
 
+    const groovesMessage = document.getElementById('diverterGroovesMessage');
 
-<script>
-  // Apply to all number inputs with a data-maxlength attribute
-  document.querySelectorAll('input[type="number"][data-maxlength]').forEach(input => {
-    // Always ensure minimum 0
+    if (enteredGrooves === '') {
+        groovesMessage.style.display = 'none';
+        return;
+    }
+
+    if (!availableGrooves.includes(enteredGrooves)) {
+        groovesMessage.textContent = ` No. of Grooves "${enteredGrooves}" not available.`;
+        groovesMessage.style.color = 'red';
+        groovesMessage.style.display = 'block';
+    } else {
+        groovesMessage.style.display = 'none';
+    }
+});
+
+// INPUT VALIDATION - ROPE DIA
+document.getElementById('diverterRopeDia').addEventListener('change', function(e) {
+    const enteredRopeDia = this.value.trim();
+    const availableRopeDias = [...new Set(diverterWheelDataNew.map(item => item.ropeDia))];
+
+    const ropeDiaMessage = document.getElementById('diverterRopeDiaMessage');
+
+    if (enteredRopeDia === '') {
+        ropeDiaMessage.style.display = 'none';
+        return;
+    }
+
+    if (!availableRopeDias.includes(enteredRopeDia)) {
+        ropeDiaMessage.textContent = ` Rope Diameter "${enteredRopeDia}" not available.`;
+        ropeDiaMessage.style.color = 'red';
+        ropeDiaMessage.style.display = 'block';
+    } else {
+        ropeDiaMessage.style.display = 'none';
+    }
+});
+
+// INPUT VALIDATION - SHAFT DIA
+document.getElementById('diverterShaftDiaInput').addEventListener('change', function(e) {
+    const enteredShaftDia = this.value.trim();
+    const availableShaftDias = [...new Set(diverterWheelDataNew.map(item => item.shaftDia))];
+
+    const shaftDiaMessage = document.getElementById('diverterShaftDiaMessage');
+
+    if (enteredShaftDia === '') {
+        shaftDiaMessage.style.display = 'none';
+        return;
+    }
+
+    console.log('Checking Shaft Dia:', enteredShaftDia, 'Available:', availableShaftDias);
+
+    if (!availableShaftDias.includes(enteredShaftDia) &&
+    !availableShaftDias.includes(enteredShaftDia.replace('Ø', '').trim())) {
+
+        shaftDiaMessage.textContent = ` Shaft Diameter "Ø ${enteredShaftDia}" not available.`;
+        shaftDiaMessage.style.color = 'red';
+        shaftDiaMessage.style.display = 'block';
+    } else {
+        shaftDiaMessage.style.display = 'none';
+    }
+});
+
+// INPUT SANITIZATION - only numbers
+document.getElementById('diverterShaftDiaInput').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    
+    const max = parseInt(this.dataset.maxlength);
+    if (this.value.length > max) {
+        this.value = this.value.slice(0, max);
+    }
+
+    if (this.value < 0) {
+        this.value = '';
+    }
+});
+
+// MAX LENGTH VALIDATION on other inputs
+document.querySelectorAll('#diverterPopupOverlay input[type="number"][data-maxlength]').forEach(input => {
     input.min = 0;
 
-    input.addEventListener('input', function () {
-      const max = parseInt(this.dataset.maxlength);
-      
-      // If user types more digits than allowed
-      if (this.value.length > max) {
-        this.value = this.value.slice(0, max);
-      }
+    input.addEventListener('input', function() {
+        const max = parseInt(this.dataset.maxlength);
 
-      // Prevent negative or invalid input
-      if (this.value < 0) {
-        this.value = '';
-      }
+        if (this.value.length > max) {
+            this.value = this.value.slice(0, max);
+        }
+
+        if (this.value < 0) {
+            this.value = '';
+        }
     });
-  });
-</script>
+});
 
+
+</script>
+<!-- Ø code  -->
+
+<script>
+// Updated Shaft Diameter Input Validation
+document.getElementById('diverterShaftDiaInput').addEventListener('change', function(e) {
+    const enteredShaftDia = this.value.trim();
+    const availableShaftDias = [...new Set(diverterWheelDataNew.map(item => item.shaftDia.trim()))];
+
+    const shaftDiaMessage = document.getElementById('diverterShaftDiaMessage');
+
+    if (enteredShaftDia === '') {
+        shaftDiaMessage.style.display = 'none';
+        return;
+    }
+
+    console.log('Entered Shaft Dia:', enteredShaftDia);
+    console.log('Available Shaft Dias:', availableShaftDias);
+
+    if (!availableShaftDias.includes(enteredShaftDia) &&
+    !availableShaftDias.includes(enteredShaftDia.replace('Ø', '').trim())) {
+
+        shaftDiaMessage.textContent = ` Shaft Diameter "Ø ${enteredShaftDia}" not available.`;
+        shaftDiaMessage.style.color = 'red';
+        shaftDiaMessage.style.display = 'block';
+    } else {
+        shaftDiaMessage.style.display = 'none';
+    }
+});
+
+// Prevent users from typing non-numeric characters
+document.getElementById('diverterShaftDiaInput').addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    
+    const max = parseInt(this.dataset.maxlength);
+    if (this.value.length > max) {
+        this.value = this.value.slice(0, max);
+    }
+
+    if (this.value < 0) {
+        this.value = '';
+    }
+});
+
+// Prevent paste of invalid characters
+document.getElementById('diverterShaftDiaInput').addEventListener('paste', function(e) {
+    e.preventDefault();
+    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+    const cleanedText = pastedText.replace(/[^0-9]/g, '');
+    const max = parseInt(this.dataset.maxlength);
+    this.value = cleanedText.slice(0, max);
+});
+</script>
     <!-- ---------***************diverter Wheel popup fetch end******************------  -->
 </body>
 
